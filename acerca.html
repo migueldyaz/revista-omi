@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Acerca de la Revista</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div id="menu-container"></div>
   <script>
     fetch('./menu.html')
       .then(response => response.text())
-      .then(data => document.write(data));
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
   </script>
-</head>
-<body>
-  <h1>Acerca de la Revista</h1>
+
+  <main>
+    <h1>Acerca de la Revista</h1>
+    <p>Contenido de la sección: Acerca de la Revista</p>
+  </main>
 </body>
 </html>

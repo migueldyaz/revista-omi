@@ -1,15 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Directrices para Autores</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <div id="menu-container"></div>
   <script>
     fetch('./menu.html')
       .then(response => response.text())
-      .then(data => document.write(data));
+      .then(data => {
+        document.getElementById('menu-container').innerHTML = data;
+      });
   </script>
-</head>
-<body>
-  <h1>Directrices para Autores</h1>
+
+  <main>
+    <h1>Directrices para Autores</h1>
+    <p>Contenido de la sección: Directrices para Autores</p>
+  </main>
 </body>
 </html>
