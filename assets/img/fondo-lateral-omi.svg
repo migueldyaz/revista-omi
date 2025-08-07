@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="384" height="2048" viewBox="0 0 384 2048">
+  <defs>
+    <style>
+      .sky { fill:#8ec3d6; }
+      .sun { fill:#f7e26b; }
+      .indigo { fill:#3c56a6; }
+      .stone { fill:#b5b1a3; }
+      .soft { opacity:.9; }
+      .softer { opacity:.8; }
+      .ghost { opacity:.6; }
+    </style>
+  </defs>
+
+  <!-- top cluster -->
+  <circle class="sun soft" cx="64" cy="96" r="36"/>
+  <circle class="sky" cx="288" cy="96" r="104"/>
+  <circle class="sky" cx="96" cy="320" r="180"/>
+  <circle class="sky" cx="256" cy="288" r="28"/>
+  <circle class="sky" cx="256" cy="448" r="52"/>
+  <circle class="sky" cx="304" cy="512" r="20"/>
+
+  <!-- large mid overlap -->
+  <circle class="sun soft" cx="336" cy="944" r="192"/>
+  <circle class="indigo ghost" cx="208" cy="1088" r="160"/>
+  <circle class="stone soft" cx="272" cy="1040" r="152"/>
+
+  <!-- mid scatter -->
+  <circle class="sky" cx="96" cy="880" r="72"/>
+  <circle class="sky" cx="280" cy="1200" r="116"/>
+  <circle class="sky" cx="56" cy="1360" r="36"/>
+  <circle class="sky" cx="316" cy="1440" r="40"/>
+  <circle class="sky" cx="320" cy="1568" r="32"/>
+
+  <!-- lower sun cluster -->
+  <circle class="sun soft" cx="144" cy="1728" r="128"/>
+  <circle class="stone softer" cx="208" cy="1768" r="64"/>
+  <circle class="indigo ghost" cx="232" cy="1788" r="60"/>
+  <circle class="sky" cx="64" cy="1968" r="120"/>
+  <circle class="sky" cx="296" cy="1936" r="84"/>
+  <circle class="sky" cx="304" cy="2040" r="36"/>
+
+  <!-- side trim arcs for a cut edge feel -->
+  <path class="sky" d="M384,192 a160,160 0 0 1 -160,160 V192 Z"/>
+  <path class="sky" d="M384,672 a120,120 0 0 1 -120,120 V672 Z"/>
+</svg>

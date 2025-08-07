@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Números Anteriores | Revista OMI Internacional</title>
+
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- 🌐 Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+
+<header>
+<!-- Botón hamburguesa visible solo en pantallas pequeñas -->
+ <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
+
+
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <h1>Revista OMI Internacional</h1>
+</header>
+
+<nav class="menu">
+  <ul class="menu-root">
+    <li><a href="index.html">Inicio</a></li>
+    <li class="has-submenu">
+      <a href="#">Archivo</a>
+      <ul class="submenu">
+        <li><a href="numero-actual.html">Número Actual</a></li>
+        <li><a href="numero-anterior.html">Números Anteriores</a></li>
+      </ul>
+    </li>
+    <li><a href="directrices.html">Directrices para Autores</a></li>
+    <li class="has-submenu">
+      <a href="#">Acerca de</a>
+      <ul class="submenu">
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<!-- Breadcrumbs dinámicos con ícono de casa -->
+<nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
+
+<!-- Mapa de breadcrumbs -->
+<script src="assets/js/breadcrumb-map.js"></script>
+
+<!-- Renderizado de breadcrumb dinámico -->
+<script src="assets/js/breadcrumb-render.js"></script>
+
+<main class="container">
+  <div class="sidebar">
+    <h3>Buscar</h3>
+    <input type="text" placeholder="Buscar..." style="width:100%;padding:5px" />
+    <h3>Información</h3>
+    <p>ISSN: XXXX-XXXX</p>
+    <p>Frecuencia: Semestral</p>
+  </div>
+
+  <div class="content">
+    <h2>Volumen 1, Número 1 (2025)</h2>
+
+    <div class="article">
+      <h3>Impacto de las Tecnologías Emergentes en la Educación</h3>
+      <div class="authors">Juan Pérez, María González</div>
+      <p>Resumen del artículo...</p>
+      <div class="links">
+        <a href="#">PDF</a>
+        <a href="#">HTML</a>
+        <a href="#">EPUB</a>
+        <a href="#">XMLJATS</a>
+      </div>
+    </div>
+
+    <div class="article">
+      <h3>Análisis de Datos en la Gestión Universitaria</h3>
+      <div class="authors">Carlos Ramírez, Laura Mendoza</div>
+      <p>Resumen del artículo...</p>
+      <div class="links">
+        <a href="#">PDF</a>
+        <a href="#">HTML</a>
+        <a href="#">EPUB</a>
+        <a href="#">XMLJATS</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>
+      Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      Esta revista publica bajo una licencia
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      </a>
+    </p>
+
+    <p>
+      Organismo Mundial de Investigación, S.C., Sede CDMX.<br>
+      <strong>Dirección:</strong> Av. Anillo Periférico 42, Col. Constitución de 1917, Alcaldía Iztapalapa, C.P. 09260, Ciudad de México. <br>
+      <strong>Teléfonos:</strong> (55) 70897395 y (55) 70897397.<br>
+      <strong>Correo electrónico:</strong> <a href="mailto:contacto@uomi.edu.mx">contacto@uomi.edu.mx</a>
+    </p>
+  </div>
+</footer>
+<!-- UI general: navegación activa, View Transition, menú hamburguesa -->
+<script src="assets/js/global-ui.js"></script>
+</body>
+</html>

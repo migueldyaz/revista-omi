@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Acerca de | Revista OMI Internacional</title>
+
+  <!-- 🎨 Estilos globales -->
+  <link rel="stylesheet" href="assets/style.css" />
+
+  <!-- 🌐 Favicon -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="icon" type="image/png" href="favicon.png" />
+</head>
+
+<body class="loaded">
+<header>
+<!-- Botón hamburguesa visible solo en pantallas pequeñas -->
+ <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <h1>Revista OMI Internacional</h1>
+</header>
+
+<nav class="menu">
+  <ul class="menu-root">
+    <li><a href="index.html">Inicio</a></li>
+
+    <li class="has-submenu">
+      <a href="#">Archivo</a>
+      <ul class="submenu">
+        <li><a href="numero-actual.html">Número Actual</a></li>
+        <li><a href="numero-anterior.html">Números Anteriores</a></li>
+      </ul>
+    </li>
+
+    <li><a href="directrices.html">Directrices para Autores</a></li>
+
+    <li class="has-submenu">
+      <a href="#">Acerca de</a>
+      <ul class="submenu">
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!-- Breadcrumbs dinámicos con ícono de casa -->
+<nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
+
+<!-- Mapa de breadcrumbs -->
+<script src="assets/js/breadcrumb-map.js"></script>
+
+<!-- Renderizado de breadcrumb dinámico -->
+<script src="assets/js/breadcrumb-render.js"></script>
+
+<main id="contenido" class="container">
+<!-- 📑 Índice de Contenidos (plegable) -->
+<details class="indice-contenido" id="toc" open>
+  <summary><span>Contenido</span></summary>
+  <div class="toc-body">
+    <ul>
+      <li><a href="#acerca-revista">Acerca de la revista</a></li>
+      <li><a href="#enfoque-alcance">Enfoque y alcance</a></li>
+      <li><a href="#peer-review">Proceso de evaluación por pares</a></li>
+      <li><a href="#acceso-abierto">Política de acceso abierto</a></li>
+      <li><a href="#antiplagio">Política antiplagio</a></li>
+      <li><a href="#etica">Normas éticas</a></li>
+    </ul>
+  </div>
+</details>
+
+
+    <section aria-labelledby="acerca-revista">
+      <h2 id="acerca-revista">Acerca de la revista</h2>
+    </section>
+
+    <article aria-labelledby="enfoque-alcance">
+      <h2 id="enfoque-alcance">Enfoque y alcance</h2>
+      <p><cite>Revista OMI</cite> es una revista de investigación científica, adscrita al Organismo Mundial de Investigación, Sociedad Civil, con la denominación Universidad OMI Centro de Investigación otorgada por la Secretaría de Educación Pública (SEP) de México. Su objetivo es divulgar la producción científica y académica generada en instituciones educativas del país y del mundo en el ámbito académico en general.</p>
+      <p>Se publica en idioma español, aunque los metadatos de los artículos y las directrices para autores aparecen también en inglés. Acepta trabajos originales en las siguientes modalidades: artículos de investigación, artículos de revisión, ensayos científicos y reseñas que sean resultado de investigaciones científicas, revisiones documentales y procesos de formación académica, de la reflexión crítica y de experiencias sobre la práctica educativa, así como de la actividad científico-metodológica.</p>
+      <p>Su periodicidad es semestral: primer número <time datetime="2024-07">julio-diciembre 2024</time>, segundo número <time datetime="2025-01">enero-junio 2025</time>. Se publica el número en construcción, al que se incorporan los artículos conforme sean aprobados por el arbitraje, con cierre en la primera quincena de los meses de julio y enero. Ocasionalmente pueden publicarse números especiales y monográficos.</p>
+      <p>La <cite>Revista OMI</cite> se dirige a investigadores, docentes, estudiantes universitarios y otros interesados en las diferentes disciplinas del ámbito académico o científico. Las colaboraciones abarcan los siguientes campos temáticos: Educación de pregrado y posgrado; Educación cívica y patriótica; Filosofía de la educación; Psicología de la educación; Pedagogía; Didáctica; Didácticas particulares de asignaturas y áreas del conocimiento; Investigación educativa; Dirección científica educacional; Trabajo extensionista; Tecnología y ciencias de la información y las comunicaciones; Educación para la salud; Educación ambiental; Educación jurídica; Educación económica; Formación de profesionales; Formación de docentes y Orientación profesional pedagógica.</p>
+    </article>
+
+    <section aria-labelledby="peer-review">
+      <h2 id="peer-review">Proceso de evaluación por pares</h2>
+      <p>Todos los artículos serán sometidos a revisión por pares (en su mayoría externos), en la modalidad de doble ciego, garantizando el anonimato de autores y árbitros. El proceso de evaluación comenzará a partir de la fecha en que el Consejo Editorial constate el cumplimiento de las normas editoriales. La revisión de los artículos no tiene costo para autores ni instituciones. La revista no se responsabiliza por los criterios contenidos en los artículos.</p>
+
+      <h3 id="pasos-proceso">Pasos del proceso de revisión</h3>
+      <ol>
+        <li>Verificación de requisitos conforme a las directrices para autores. De existir problemas de redacción, estilo científico o apego a normas, el artículo será devuelto para ajustes.</li>
+        <li>Comprobación de ausencia de plagio y autoplagio.</li>
+        <li>Envío a dos expertos del Comité Científico, sin datos personales de los autores.</li>
+        <li>Dictamen mediante el formulario establecido, preferentemente en línea, en un plazo de cuatro semanas a partir de la recepción. Posibles resultados:</li>
+      </ol>
+      <ul>
+        <li>Aceptar el envío.</li>
+        <li>Publicable con modificaciones.</li>
+        <li>Reenviar para revisión.</li>
+        <li>No publicable.</li>
+      </ul>
+
+      <h3 id="formularios">Formularios de revisión</h3>
+      <ul>
+        <li>Para artículos de investigación.</li>
+        <li>Para artículos de sistematización.</li>
+        <li>Para ensayos y monografías.</li>
+        <li>Para reseñas científicas.</li>
+      </ul>
+
+      <p>Si uno de los expertos no estuviera de acuerdo con la publicación, el artículo será sometido a revisión por un tercer evaluador; el criterio predominante será definitorio. El artículo corregido se verificará nuevamente por los expertos. En caso necesario se enviará por segunda y última vez a los autores para las correcciones pertinentes. El período de publicación estimado es de ciento ochenta días.</p>
+    </section>
+
+    <section aria-labelledby="acceso-abierto">
+      <h2 id="acceso-abierto">Política de acceso abierto</h2>
+      <p>La <cite>Revista OMI</cite> asume la política de acceso abierto y gratuito a la información y al uso sin restricciones de los artículos que publica. Es posible acceder a sus contenidos de manera libre, sin costo para los lectores; estos pueden descargar, almacenar, copiar, resumir, adaptar y distribuir el trabajo publicado de forma gratuita, siempre que sea sin fines comerciales y se referencien la fuente y autoría. Los autores no asumen costos por el procesamiento editorial de sus artículos y ni autores ni revisores reciben remuneración por la revisión o publicación.</p>
+    </section>
+
+    <section aria-labelledby="antiplagio">
+      <h2 id="antiplagio">Política antiplagio</h2>
+      <p>La <cite>Revista OMI</cite> se opone a cualquier manifestación contraria al uso ético de la información y aplica las siguientes herramientas antiplagio:</p>
+      <ul>
+        <li>Plagiarisma: <a href="https://plagiarisma.net/es/" target="_blank" rel="noopener noreferrer">plagiarisma.net</a></li>
+        <li>Plagiarism Checker (PaperRater): <a href="https://www.paperrater.com/plagiarism_checker" target="_blank" rel="noopener noreferrer">paperrater.com/plagiarism_checker</a></li>
+        <li>PlagScan: <a href="https://www.plagscan.com/es/" target="_blank" rel="noopener noreferrer">plagscan.com/es</a></li>
+        <li>PlagiarismChecker.com: <a href="https://www.plagiarismchecker.com/" target="_blank" rel="noopener noreferrer">plagiarismchecker.com</a></li>
+      </ul>
+
+      <h3 id="antes-publicacion">Antes de la publicación del artículo</h3>
+      <p>El Comité Editorial considerará el criterio de los autores, evaluará la situación y determinará si puede ser solucionada por los autores a instancias del editor o si es necesario rechazar el artículo, según la magnitud del hecho.</p>
+
+      <h3 id="despues-publicacion">Después de la publicación del artículo</h3>
+      <p>Cuando se constate el plagio, se retirará el artículo, se publicará una nota de retractación y se informará a la institución y a las bases de datos en que se indiza la <cite>Revista OMI</cite>.</p>
+    </section>
+
+    <section aria-labelledby="etica">
+      <h2 id="etica">Normas éticas</h2>
+      <p>La <cite>Revista OMI</cite> favorece el respeto a las buenas prácticas y normas éticas en la gestión editorial conforme a lo siguiente:</p>
+      <ol>
+        <li>La originalidad de los trabajos enviados es un requisito esencial.</li>
+        <li>Todas las personas incluidas como autores deben haber contribuido de manera significativa.</li>
+        <li>La inclusión injustificada de autores se considera una desviación ética.</li>
+        <li>Los autores son responsables de la confiabilidad de datos, informaciones y análisis.</li>
+        <li>Autores y revisores deben informar al editor sobre conflictos de interés reales o potenciales.</li>
+        <li>Los revisores deben cumplir las normas establecidas para la evaluación y publicación.</li>
+        <li>El Comité Editorial atenderá con agilidad y transparencia los conflictos de interés y las apelaciones.</li>
+        <li>El Comité Editorial aplicará prevenciones para evitar conflictos de interés.</li>
+        <li>Editores y evaluadores mantendrán discreción y confidencialidad.</li>
+        <li>Los evaluadores se comprometen con el rigor científico y los plazos.</li>
+        <li>Ante plagio o publicación redundante, se aplicará rechazo o retractación conforme a la política antiplagio.</li>
+        <li>El Comité Editorial es responsable del rigor del proceso y la mejora continua de normas y buenas prácticas.</li>
+      </ol>
+    </section>
+  </main>
+
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>
+      Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      Esta revista publica bajo una licencia
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      </a>
+    </p>
+
+    <p>
+      Organismo Mundial de Investigación, S.C., Sede CDMX.<br>
+      <strong>Dirección:</strong> Av. Anillo Periférico 42, Col. Constitución de 1917, Alcaldía Iztapalapa, C.P. 09260, Ciudad de México. <br>
+      <strong>Teléfonos:</strong> (55) 70897395 y (55) 70897397.<br>
+      <strong>Correo electrónico:</strong> <a href="mailto:contacto@uomi.edu.mx">contacto@uomi.edu.mx</a>
+    </p>
+  </div>
+</footer>
+<!-- 🔝 Botón Volver arriba -->
+<button id="btn-top" aria-label="Volver arriba">↑ Volver arriba</button>
+<!-- UI general: navegación activa, View Transition, menú hamburguesa -->
+<script src="assets/js/global-ui.js"></script>
+</body>
+</html>
