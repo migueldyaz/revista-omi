@@ -4,25 +4,20 @@
   <meta charset="UTF-8" />
   <title>Número Actual | Revista OMI Internacional</title>
 
-  <!-- Base dinámico: raíz "/" en local y "/<repo>/" en GitHub Pages -->
+  <!-- Base dinámico: "/" en local y "/revista-umi/" en GitHub Pages -->
   <script>
-  (function () {
-    const isGH = location.hostname.endsWith('github.io');
-    const repo = isGH ? location.pathname.split('/')[1] : ''; // "revista-umi"
-    const baseHref = isGH ? `/${repo}/` : '/';
-    let baseEl = document.querySelector('base');
-    if (!baseEl) {
-      baseEl = document.createElement('base');
-      document.head.prepend(baseEl);
-    }
-    baseEl.setAttribute('href', baseHref);
-  })();
+    (function () {
+      var isGH = location.hostname.endsWith('github.io');
+      var repo = isGH ? location.pathname.split('/')[1] : ''; // "revista-umi"
+      var baseHref = isGH ? ('/' + repo + '/') : '/';
+      document.write('<base href="' + baseHref + '">');
+    })();
   </script>
 
-  <!-- CSS (desde la raíz del proyecto) -->
+  <!-- CSS principal -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Favicons (en la raíz del sitio) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
@@ -32,14 +27,13 @@
   <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
 
-  <!-- Logo (desde assets/img/) -->
+  <!-- Logo -->
   <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
 <nav class="menu">
   <ul class="menu-root">
-    <!-- Enlaces relativos al <base> -->
     <li><a href="index.html">Inicio</a></li>
     <li><a href="assets/archivo.html">Archivo</a></li>
     <li><a href="directrices.html">Directrices para Autores</a></li>
@@ -54,10 +48,10 @@
   </ul>
 </nav>
 
-<!-- Breadcrumbs dinámicos -->
+<!-- Breadcrumbs -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
 
-<!-- JS (desde assets/js/) -->
+<!-- JS Breadcrumbs -->
 <script src="assets/js/breadcrumb-map.js"></script>
 <script src="assets/js/breadcrumb-render.js"></script>
 
@@ -75,7 +69,6 @@
 
     <div class="article">
       <h3 class="issue-title">
-        <!-- Si tienes una “vista” del artículo, cámbialo a assets/view/202501/2103.html -->
         <a href="assets/article/202501/2103/2103.html">
           Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey
         </a>
@@ -87,7 +80,7 @@
       <div class="links">
         <a href="assets/article/202501/2103/2103.pdf">PDF</a>
         <a href="assets/article/202501/2103/2103.html">HTML</a>
-        <a href="assets/article/202501/2103/2103-epub.html">EPUB2</a>
+        <a href="assets/article/202501/2103/2103-epub.html">EPUB3</a>
         <a href="#">XMLJATS</a>
       </div>
     </div>
@@ -113,7 +106,6 @@
       (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
       Esta revista publica bajo una licencia
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
-      <!-- CC (desde assets/img/) -->
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Especificación CC 4.0" target="_blank" rel="noopener">
         <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
       </a>
@@ -128,7 +120,7 @@
   </div>
 </footer>
 
-<!-- UI general -->
+<!-- JS general -->
 <script src="assets/js/global-ui.js"></script>
 </body>
 </html>
