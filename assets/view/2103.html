@@ -5,12 +5,22 @@
   <title>Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey | Revista OMI Internacional</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- CSS (desde assets/) -->
-  <link rel="stylesheet" href="../style.css" />
+  <!-- Base dinámico: "/" en local y "/revista-umi/" en GitHub Pages -->
+  <script>
+    (function () {
+      var isGH = location.hostname.endsWith('github.io');
+      var repo = isGH ? location.pathname.split('/')[1] : '';
+      var baseHref = isGH ? ('/' + repo + '/') : '/';
+      document.write('<base href="' + baseHref + '">');
+    })();
+  </script>
+
+  <!-- CSS (desde la raíz del proyecto) -->
+  <link rel="stylesheet" href="style.css" />
 
   <!-- Favicons (en la raíz del sitio) -->
-  <link rel="icon" type="image/x-icon" href="../../favicon.ico">
-  <link rel="icon" type="image/png" href="../../favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body class="view-article">
 
@@ -19,21 +29,21 @@
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
 
   <!-- Logo (desde assets/img/) -->
-  <img src="../img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
 <nav class="menu">
   <ul class="menu-root">
-    <li><a href="../../index.html">Inicio</a></li>
-    <li><a href="../archivo.html">Archivo</a></li>
-    <li><a href="../../directrices.html">Directrices para Autores</a></li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="assets/archivo.html">Archivo</a></li>
+    <li><a href="directrices.html">Directrices para Autores</a></li>
     <li class="has-submenu">
       <a href="#">Acerca de</a>
       <ul class="submenu">
-        <li><a href="../../acerca.html">Acerca de</a></li>
-        <li><a href="../../comite.html">Comité Editorial</a></li>
-        <li><a href="../../rights.html">Derechos de Autor y Derechos Conexos</a></li>
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
       </ul>
     </li>
   </ul>
@@ -43,8 +53,8 @@
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
 
 <!-- JS breadcrumbs (desde assets/js/) -->
-<script src="../js/breadcrumb-map.js"></script>
-<script src="../js/breadcrumb-render.js"></script>
+<script src="assets/js/breadcrumb-map.js"></script>
+<script src="assets/js/breadcrumb-render.js"></script>
 
 <main class="container">
   <!-- Columna principal -->
@@ -151,13 +161,13 @@
     </article>
   </div>
 
-  <!-- Sidebar con portada, metadatos y descargas -->
+   <!-- Sidebar con portada, metadatos y descargas -->
   <aside class="sidebar" aria-label="Información del artículo">
     <!-- Portada del número -->
     <figure class="issue-cover">
-      <a href="../view/numero-2025-01.html" aria-label="Ir al número Vol. 2 Núm. 1 (2025)">
+      <a href="assets/view/202501/numero-2025-01.html" aria-label="Ir al número Vol. 2 Núm. 1 (2025)">
         <img
-          src="../img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png"
+          src="assets/img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png"
           alt="Portada de la revista: Vol. 2 Núm. 1 (2025)"
           loading="lazy" decoding="async" />
       </a>
@@ -173,19 +183,18 @@
       <div class="meta-block">
         <strong class="label">Número:</strong>
         <div class="value">
-          <a href="../../../../assets/view/202501/numero-2025-01.html">Vol. 2 Núm. 1 (2025)</a>
+          <a href="assets/view/202501/numero-2025-01.html">Vol. 2 Núm. 1 (2025)</a>
         </div>
       </div>
 
       <div class="meta-block downloads">
         <strong class="label">Descargas:</strong>
         <div class="links">
-        <a href="assets/article/202501/2103/2103.pdf">PDF</a>
-        <a href="assets/article/202501/2103/2103.html">HTML</a>
-        <a href="assets/article/202501/2103/2103-epub.html">EPUB</a>
-        <a href="#">XMLJATS</a>
-</div>
-
+          <a href="assets/article/202501/2103/2103.pdf">PDF</a>
+          <a href="assets/article/202501/2103/2103.html">HTML</a>
+          <a href="assets/article/202501/2103/2103-epub.html">EPUB</a>
+          <a href="#">XMLJATS</a>
+        </div>
       </div>
 
       <div class="meta-block">
@@ -215,7 +224,7 @@
       Esta revista publica bajo una licencia
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
       <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Especificación CC 4.0" target="_blank" rel="noopener">
-        <img src="../img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
       </a>
     </p>
 
@@ -232,6 +241,6 @@
 <button id="btn-top" aria-label="Volver arriba">↑ Volver arriba</button>
 
 <!-- UI general -->
-<script src="../js/global-ui.js"></script>
+<script src="assets/js/global-ui.js"></script>
 </body>
 </html>
