@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Directrices | Revista OMI Internacional</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+<header>
+  <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
+  <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <h1>Revista OMI Internacional</h1>
+</header>
+
+<nav class="menu">
+  <ul class="menu-root">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="assets/archivo.html">Archivo</a></li>
+    <li><a href="directrices.html">Directrices para Autores</a></li>
+    <li class="has-submenu">
+      <a href="#">Acerca de</a>
+      <ul class="submenu">
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!-- Breadcrumbs dinámicos con ícono de casa -->
+<nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
+
+<!-- Mapa de breadcrumbs -->
+<script src="assets/js/breadcrumb-map.js" defer></script>
+
+<!-- Renderizado de breadcrumb dinámico -->
+<script src="assets/js/breadcrumb-render.js" defer></script>
+
+<main id="contenido" class="container" role="main" aria-labelledby="titulo-directrices">
+  <h2 id="titulo-directrices">Directrices para autores</h2>
+
+  <!-- 📑 Índice de Contenidos (plegable) -->
+  <details class="indice-contenido" id="toc" open>
+    <summary><span>Contenido</span></summary>
+    <div class="toc-body">
+      <ul>
+        <li>
+          <a href="#primera-estructura">Primera estructura</a>
+          <ul>
+            <li><a href="#sec-titulo">Título</a></li>
+            <li><a href="#sec-autores">Autores</a></li>
+            <li><a href="#sec-resumen">Resumen (Abstract)</a></li>
+            <li><a href="#sec-palabras-clave">Palabras clave (Keywords)</a></li>
+            <li><a href="#sec-introduccion">Introducción</a></li>
+            <li><a href="#sec-materiales-metodos">Materiales y métodos</a></li>
+            <li><a href="#sec-resultados-discusion">Resultados y discusión</a></li>
+            <li><a href="#sec-conclusiones">Conclusiones</a></li>
+            <li><a href="#sec-referencias">Referencias</a></li>
+            <li><a href="#sec-imagenes">Imágenes</a></li>
+          </ul>
+        </li>
+        <li><a href="#segunda-estructura">Segunda estructura</a></li>
+      </ul>
+    </div>
+  </details>
+
+  <h3 id="primera-estructura">Primera estructura</h3>
+  <p>Los trabajos deberán seguir la siguiente estructura y escribirse con letra Times New Roman, tamaño 12, con interlineado de 1.5 de espacio.</p>
+  <ol>
+    <li>Título</li>
+    <li>Autores</li>
+    <li>Resumen (Abstract)</li>
+    <li>Palabras clave (Keywords)</li>
+    <li>Introducción</li>
+    <li>Materiales y métodos (Metodología)</li>
+    <li>Resultados y discusión</li>
+    <li>Conclusiones</li>
+    <li>Referencias</li>
+  </ol>
+
+  <h4 id="sec-titulo">Título</h4>
+  <p>Entre 15 y 20 palabras en mayúscula y negrita. No incluye siglas, abreviaturas ni palabras sin contenido. Debe ser tan convincente que capte la atención del lector.</p>
+
+  <h4 id="sec-autores">Autores</h4>
+  <p>Se permiten hasta cinco (5) autores. Contiene nombres y apellidos completos, (sin títulos académicos ni categoría) seguido de un número en superíndice para identificar la afiliación de los autores, correo electrónico. La afiliación debe contener únicamente el nombre de la institución y el país.</p>
+
+  <h4 id="sec-resumen">Resumen (Abstract)</h4>
+  <p>Tendrá entre 200 y 250 palabras en español e inglés. Revela el objetivo del artículo. Describe brevemente el tema, la metodología y los resultados, sin entrar en detalles. Se escribe en un solo párrafo. No contiene abreviaturas, siglas, citas ni referencias a figuras, tablas, cuadros, gráficas. Debe redactarse en tercera persona y en voz activa. Expresa una secuencia lógica y precisa de la exposición. Es una argumentación convincente. No incluye interpretaciones subjetivas y equívocas ni valoraciones crítica e interpretativas.</p>
+
+  <h4 id="sec-palabras-clave">Palabras clave (Keywords)</h4>
+  <p>Son una orientación importante para el lector. Pueden ser entre 4 y 5 escritas en español e inglés y separadas por comas (,). Se relacionan estrechamente con el título y el contenido del artículo.</p>
+
+  <h4 id="sec-introduccion">Introducción</h4>
+  <p>Recrea el problema de investigación detalladamente. Explica las causas de la investigación, las razones que la justifican. Exigen una lógica deductiva- inductiva, transita de lo general a lo particular. Se sustenta en el análisis de fuentes, en lo que han dicho otros autores acerca del tema. Plantea lo que se conoce, se desconoce y lo que se pretende revelar de manera novedosa. Su redacción debe ser muy cuidadosa y exquisita para movilizar la atención del lector.</p>
+  <p>La finalidad de la introducción es propiciar antecedentes para que el lector comprenda y evalúe el alcance de la investigación. Trata aspectos relacionados con las fuentes consultadas e incluye antecedentes, postulados teóricos, escenario geográfico, aspectos históricos y jurídicos si fueran necesarios.</p>
+
+  <h4 id="sec-materiales-metodos">Materiales y métodos</h4>
+  <p>Revela la forma de proceder de los investigadores para lograr el objetivo. Se refiere al tipo de investigación, a los métodos empleados, la selección de la muestra y su caracterización, las técnicas que aplicaron y a sus instrumentos, las bases de datos utilizadas, la lógica del proceso investigativo, la forma en que se realizó el procedimiento y análisis de la información todo lo cual debe estar explicado partiendo de las razones para su puesta en práctica, la manera en que se hizo y la utilidad de los mismos. </p>
+
+  <h4 id="sec-resultados-discusion">Resultados y discusión</h4>
+  <p>Es el apartado del artículo que moviliza la atención de los lectores con mayor interés y sentido crítico. Se deriva del procesamiento de la información recopilada. Se debe redactar con elevado sentido de la responsabilidad. Su contenido se basa en los hallazgos de la investigación. Es la parte de mayor relevancia teórica y cognoscitiva. Constituye la novedad de la investigación. </p>
+  <p>Se sustenta en los resultados, pero no los repite. Es la dialéctica contradictoria, no antagónica entre lo relacionados con las fuentes consultadas e incluye antecedentes, postulados teóricos, escenario geográfico, aspectos históricos y jurídicos si fueran necesarios.</p>
+
+  <h4 id="sec-conclusiones">Conclusiones</h4>
+  <p>Prueban si el objetivo se logró o no. Se refieren a los aspectos esenciales de la investigación. Resaltan los hallazgos y sus consecuencias prácticas y teóricas. Se redactan clara, precisa y brevemente. Deben dejar una sensación de satisfacción en el lector. Son puntualizaciones convincentes. No se admiten recomendaciones. No se enumeran ni colocan en viñetas.</p>
+
+  <h4 id="sec-referencias">Referencias</h4>
+  <p>Las citas y referencia bibliografía deben responder a la norma APA. El máximo de referencias bibliográficas aceptada es de 25 (se aceptan hasta 30 según el estudio). Todas las referencias bibliográficas deben estar citadas en el texto garantizando que a cada cita le corresponda una referencia y cada referencia al menos sea citada una vez. Al menos un 25% de las referencias pertenezcan a artículos indizados en bases de datos de Scopus o la Web of Science. Deben utilizarse citar y referenciar fuentes en más de un 50% de fuentes actualizadas de los últimos 5 años. No se admite bibliografía gris o de poco valor bibliográfico.</p>
+
+  <h4 id="sec-imagenes">Imágenes</h4>
+  <p>Las tablas, esquemas y gráficos se aceptarán en formato de imagen. Los mapas, fotografías, dibujos e ilustraciones en formato GIF, JPG, BMP o PCX; deberán presentarse en correspondencia con lo establecido en la séptima edición de la norma.</p>
+  <p>Las tablas y figuras deben ajustarse a lo establecido en séptima edición de las normas APA. </p>
+
+  <h4 id="segunda-estructura">Segunda estructura</h4>
+  <p>También se aceptan artículos con la siguiente estructura:</p>
+  <ol>
+    <li>Título</li>
+    <li>Autores</li>
+    <li>Resumen (Abstract)</li>
+    <li>Palabras clave (Keywords)</li>
+    <li>Introducción</li>
+    <li>Desarrollo</li>
+    <li>Conclusiones</li>
+    <li>Referencias</li>
+  </ol>
+
+  <p>Cuando se aplique esta estructura la metodología empleada será la última parte de la introducción. En el desarrollo deberá aparecer lo correspondiente a resultados y discusión de la estructura anterior. El resto de los apartados mantiene el mismo contenido descrito previamente. </p>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>
+      Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      Esta revista publica bajo una licencia
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      </a>
+    </p>
+
+    <p>
+      Organismo Mundial de Investigación, S.C., Sede CDMX.<br>
+      <strong>Dirección:</strong> Av. Anillo Periférico 42, Col. Constitución de 1917, Alcaldía Iztapalapa, C.P. 09260, Ciudad de México. <br>
+      <strong>Teléfonos:</strong> (55) 70897395 y (55) 70897397.<br>
+      <strong>Correo electrónico:</strong> <a href="mailto:contacto@uomi.edu.mx">contacto@uomi.edu.mx</a>
+    </p>
+  </div>
+</footer>
+
+<!-- 🔝 Botón Volver arriba -->
+<button id="btn-top" aria-label="Volver arriba">↑ Volver arriba</button>
+
+<!-- UI general: navegación activa, View Transition, menú hamburguesa -->
+<script src="assets/js/global-ui.js" defer></script>
+</body>
+</html>

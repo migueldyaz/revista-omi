@@ -1,0 +1,1 @@
+// Funciones JavaScript de la Revista OMI
