@@ -8,14 +8,14 @@
   <script>
     (function () {
       var isGH = location.hostname.endsWith('github.io');
-      var repo = isGH ? location.pathname.split('/')[1] : ''; // "revista-umi"
+      var repo = isGH ? location.pathname.split('/')[1] : '';
       var baseHref = isGH ? ('/' + repo + '/') : '/';
       document.write('<base href="' + baseHref + '">');
     })();
   </script>
 
-  <!-- CSS principal -->
-  <link rel="stylesheet" href="style.css" />
+  <!-- CSS (en assets/) -->
+  <link rel="stylesheet" href="assets/style.css" />
 
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -24,10 +24,7 @@
 <body>
 
 <header>
-  <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
-
-  <!-- Logo -->
   <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
   <h1>Revista OMI Internacional</h1>
 </header>
@@ -48,10 +45,8 @@
   </ul>
 </nav>
 
-<!-- Breadcrumbs -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
 
-<!-- JS Breadcrumbs -->
 <script src="assets/js/breadcrumb-map.js"></script>
 <script src="assets/js/breadcrumb-render.js"></script>
 
@@ -80,7 +75,7 @@
       <div class="links">
         <a href="assets/article/202501/2103/2103.pdf">PDF</a>
         <a href="assets/article/202501/2103/2103.html">HTML</a>
-        <a href="assets/article/202501/2103/2103-epub.html">EPUB3</a>
+        <a href="assets/article/202501/2103/2103-epub.html">EPUB4</a>
         <a href="#">XMLJATS</a>
       </div>
     </div>
@@ -120,7 +115,6 @@
   </div>
 </footer>
 
-<!-- JS general -->
 <script src="assets/js/global-ui.js"></script>
 </body>
 </html>
