@@ -5,12 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gestión ambiental: reto en la capacitación de directivos | Revista OMI Internacional</title>
 
+<script>
+    (function () {
+      var isGH = location.hostname.endsWith('github.io');
+      var repo = isGH ? location.pathname.split('/')[1] : '';
+      var baseHref = isGH ? ('/' + repo + '/') : '/';
+      document.write('<base href="' + baseHref + '">');
+    })();
+  </script>
+
   <!-- 🎨 Estilos globales -->
-  <link rel="stylesheet" href="/assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css" />
 
   <!-- 🌐 Favicon -->
-  <link rel="icon" type="image/x-icon" href="/favicon.ico">
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
 
   <!-- MathJax para fórmulas -->
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -18,24 +27,23 @@
 <body>
 
 <header>
-  <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
-  <img src="/assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
 <!-- 🔶 Navegación principal -->
 <nav class="menu">
   <ul class="menu-root">
-    <li><a href="/index.html">Inicio</a></li>
-    <li><a href="/assets/archivo.html">Archivo</a></li>
-    <li><a href="/directrices.html">Directrices para Autores</a></li>
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="assets/archivo.html">Archivo</a></li>
+    <li><a href="directrices.html">Directrices para Autores</a></li>
     <li class="has-submenu">
       <a href="#">Acerca de</a>
       <ul class="submenu">
-        <li><a href="/acerca.html">Acerca de</a></li>
-        <li><a href="/comite.html">Comité Editorial</a></li>
-        <li><a href="/rights.html">Derechos de Autor y Conexos</a></li>
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="rights.html">Derechos de Autor y Conexos</a></li>
       </ul>
     </li>
   </ul>
@@ -43,8 +51,8 @@
 
 <!-- Breadcrumbs dinámicos -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
-<script src="/assets/js/breadcrumb-map.js" defer></script>
-<script src="/assets/js/breadcrumb-render.js" defer></script>
+<script src="assets/js/breadcrumb-map.js" defer></script>
+<script src="assets/js/breadcrumb-render.js" defer></script>
 
 <!-- 📄 Contenido de la página -->
 <main class="container">
