@@ -1,171 +1,231 @@
-/* ========================================
-   1. BASE / TIPOGRAFÍA GENERAL Y EFECTOS
-======================================== */
-html { scroll-behavior: smooth; }
+/* =====================================================================
+   REVISTA OMI – Hoja de estilos unificada
+   Estructura:
+   1) Reset / base
+   2) Tipografía global
+   3) Layout
+   4) Header y navegación
+   5) Migas (breadcrumbs)
+   6) Componentes de contenido (artículos, TOC, tablas, autores, refs)
+   7) Vistas (view-article, archivo/issues, portada de número)
+   8) Footer
+   9) Utilidades / accesibilidad
+   10) Responsivo
+   ---------------------------------------------------------------------
+   Notas:
+   • Se eliminaron duplicados (authors-block, refs, no-bullets, etc.).
+   • Se mantuvo el override de scroll-behavior para el visor EPUB.
+===================================================================== */
 
-/* Normaliza cálculo de caja en todo el sitio */
+/* ========================================
+   1) RESET / BASE
+======================================== */
+html { scroll-behavior: smooth; } /* se desactiva abajo para visor EPUB */
 *, *::before, *::after { box-sizing: border-box; }
 
 body{
-  font-family:'Lato','Open Sans','Segoe UI',sans-serif;
-  color:#333;
-  margin:0;
-  padding:0;
-  background-color:#f4f4f4;
-  opacity:0;
-  transition:opacity .25s ease-in-out;
-  view-transition-name:page;
+  font-family: 'Lato','Open Sans','Segoe UI',sans-serif;
+  color:#333; margin:0; padding:0; background-color:#f4f4f4;
+  opacity:0; transition:opacity .25s ease-in-out;
+  view-transition-name: page;
 }
 body.loaded { opacity: 1; }
 body.fade-out { opacity: 0; transition: opacity .25s ease-in-out; }
 
 /* ========================================
-   2. LAYOUT GENERAL
-======================================== */
-.container {
-  max-width: 1200px;
-  margin: 20px auto;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 0 10px #ccc;
-  border-radius: 6px;
-}
-/* Clearfix para contenedores con floats */
-.container::after { content:""; display:table; clear:both; }
-
-.sidebar { float: right; width: 30%; padding-left: 20px; }
-.content { width: 65%; float: left; }
-
-/* ========================================
-   3. TIPOGRAFÍA GLOBAL UNIFICADA
+   2) TIPOGRAFÍA GLOBAL
 ======================================== */
 main, .article, .content {
   font-family: 'Georgia','Times New Roman',serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #222;
+  font-size: 1rem; line-height: 1.6; color: #222;
 }
 
 h1 { font-size: 2rem; margin-bottom: 1rem; line-height: 1.2; }
 h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #004B87; }
 h3 { font-size: 1.25rem; margin-top: 1.5rem; color: #003C6C; }
 h4 { font-size: 1.1rem; margin-top: 1.2rem; color: #003C6C; }
-
-/* Los títulos anclados no quedarán ocultos */
-h2, h3, h4 { scroll-margin-top: 100px; }
+h2, h3, h4 { scroll-margin-top: 100px; } /* anclados visibles bajo header fijo */
 
 p { font-size: 1rem; text-align: justify; margin-bottom: 1rem; }
-
 ol, ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
-li { margin-bottom: 0.5rem; line-height: 1.5; }
+li { margin-bottom: .5rem; line-height: 1.5; }
 
-blockquote {
-  border-left: 4px solid #ccc;
-  padding-left: 1rem;
-  margin: 1.5rem 0;
-  font-style: italic;
-  color: #555;
+blockquote{
+  border-left: 4px solid #ccc; padding-left: 1rem;
+  margin: 1.5rem 0; font-style: italic; color: #555;
 }
-
 em { font-style: italic; color: #444; }
+.revista-nombre { color: #fff; font-style: italic; }
+.black-title { color: #000 !important; }
 
 /* ========================================
-   4. ENCABEZADO Y NAVEGACIÓN
+   3) LAYOUT
 ======================================== */
-header {
-  background-color: #004B87;
-  color: white;
-  padding: 15px 20px;
-  display: flex;
-  align-items: center;
+.container{
+  max-width: 1200px; margin: 20px auto; padding: 20px;
+  background: #fff; box-shadow: 0 0 10px #ccc; border-radius: 6px;
+}
+.container::after { content:""; display:table; clear:both; } /* clearfix */
+
+.content { width: 65%; float: left; }
+.sidebar { float: right; width: 30%; padding-left: 20px; }
+
+/* ========================================
+   4) HEADER Y NAVEGACIÓN
+======================================== */
+header{
+  background:#004B87; color:#fff; padding:15px 20px;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
   view-transition-name: header;
-  justify-content: space-between;
-  flex-wrap: wrap;
 }
-header img { height: 60px; margin-right: 15px; }
-header h1 { margin: 0; font-size: 1.6rem; flex: 1; }
+header img{ height:60px; margin-right:15px; }
+header h1{ margin:0; font-size:1.6rem; flex:1; }
 
-nav { background-color: #003C6C; padding: 10px 20px; }
-
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 15px;
-  font-weight: bold;
+nav{ background:#003C6C; padding:10px 20px; }
+nav a{
+  color:#fff; text-decoration:none; margin-right:15px; font-weight:bold;
 }
-nav a.active { background-color: #005fa3; border-radius: 4px; padding: 5px 10px; }
-nav a:visited { color: white; }
-nav a:hover { text-decoration: underline; background-color: #006bbf; transition: background .2s ease-in-out; }
+nav a.active{ background:#005fa3; border-radius:4px; padding:5px 10px; }
+nav a:visited{ color:#fff; }
+nav a:hover{ text-decoration:underline; background:#006bbf; transition:background .2s; }
 
-nav.menu ul.menu-root {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #003C6C;
+/* Menú con submenús */
+nav.menu ul.menu-root{
+  list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap;
+  background:#003C6C;
 }
-nav.menu ul.menu-root > li { position: relative; }
+nav.menu ul.menu-root > li{ position:relative; }
+nav.menu a{
+  display:block; padding:10px 15px; color:#fff; text-decoration:none; font-weight:bold;
+}
+nav.menu a:hover, nav.menu li:hover > a{ background:#006bbf; }
+nav.menu .submenu{
+  display:none; position:absolute; top:100%; left:0; min-width:200px;
+  background:#004B87; list-style:none; margin:0; padding:0; z-index:999;
+  border-radius:0 0 4px 4px; box-shadow:0 2px 8px rgba(0,0,0,.2);
+}
+nav.menu .submenu li a{ padding:10px 15px; font-weight:normal; color:#fff; }
+nav.menu .has-submenu:hover .submenu{ display:block; }
 
-nav.menu a {
-  display: block;
-  padding: 10px 15px;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
+.hamburger{
+  display:none; font-size:1.8rem; background:none; border:none; color:#fff;
+  padding:10px 20px; cursor:pointer;
 }
-nav.menu a:hover,
-nav.menu li:hover > a { background-color: #006bbf; }
 
-nav.menu .submenu {
-  display: none;
-  position: absolute;
-  top: 100%; left: 0;
-  background-color: #004B87;
-  list-style: none;
-  padding: 0; margin: 0;
-  z-index: 999;
-  min-width: 200px;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-nav.menu .submenu li a { padding: 10px 15px; font-weight: normal; color: white; }
-nav.menu .has-submenu:hover .submenu { display: block; }
-
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  background: none; border: none; color: white;
-  padding: 10px 20px; cursor: pointer;
-}
+/* Estado activo en raíz del menú */
+.menu-root a.active{ background:#005b96; color:#fff; cursor:default; }
 
 /* ========================================
-   5. CONTENIDO ESPECÍFICO
+   5) MIGAS (BREADCRUMBS)
 ======================================== */
-.article { margin-bottom: 30px; }
-.article h3 { color: #004B87; margin-bottom: 5px; }
-.article .authors { font-style: italic; font-size: .9em; margin-bottom: 10px; }
+.breadcrumb{
+  font-size:.9rem; margin:1em 0 1.5em; padding:.5em 1em;
+  background:#f9f9f9; border-radius:5px;
+  display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
+}
+.breadcrumb a{
+  color:#0056b3 !important; text-decoration:none; display:inline-flex; align-items:center; gap:4px;
+}
+.breadcrumb a:hover{ color:#003d80 !important; text-decoration:underline; }
+.breadcrumb span{ color:#555; }
+.breadcrumb svg{ width:14px; height:14px; fill:#0056b3; margin-bottom:1px; }
 
+/* ========================================
+   6) COMPONENTES DE CONTENIDO
+======================================== */
+
+/* 6.1 Hero de portada (home) */
+.homepage-hero{ margin-left:50%; transform:translateX(-50%); }
+.homepage-hero img{ display:block; width:100vw; max-width:100%; height:auto; }
+
+/* 6.2 Índice de contenidos (TOC) */
+details.indice-contenido{
+  background:#f9f9f9; border:1px solid #ddd; border-radius:8px;
+  max-width:300px; margin:0 0 2rem 0; padding:0;
+}
+details.indice-contenido > summary{
+  display:flex; align-items:center; gap:.5rem; cursor:pointer;
+  padding:.75rem 1rem; font-weight:700; font-size:1.2rem; color:#003C6C;
+  list-style:none; user-select:none;
+}
+details.indice-contenido > summary::-webkit-details-marker{ display:none; }
+details.indice-contenido > summary::marker{ content:""; }
+details.indice-contenido > summary:focus-visible{
+  outline:2px solid #66bbff; outline-offset:2px; border-radius:6px;
+}
+details.indice-contenido > summary::after{
+  content:"▾"; margin-left:auto; transition:transform .2s ease;
+}
+details.indice-contenido:not([open]) > summary::after{ transform:rotate(-90deg); }
+
+.indice-contenido .toc-body{
+  padding:0 .75rem .75rem; overflow:hidden; transition:max-height .25s ease; max-height:800px;
+}
+.indice-contenido:not([open]) .toc-body{ max-height:0; }
+
+.indice-contenido .toc-body ul{ list-style:none; padding-left:0; margin:0; }
+.indice-contenido .toc-body ul li{
+  margin:.3rem 0; padding-left:.5rem; border-left:3px solid transparent;
+}
+.indice-contenido .toc-body ul li:hover{ border-left-color:#0066cc; }
+.indice-contenido a,
+.indice-contenido a:visited{ color:#0066cc; text-decoration:none; }
+.indice-contenido a:hover{ color:#004080; text-decoration:underline; }
+.indice-contenido a:focus,
+.indice-contenido a:active{ background:none; outline:none; }
+
+/* Compatibilidad con details#toc (visores embebidos) */
+details#toc[open] .toc-body{ display:block; }
+details#toc .toc-body{ display:none; }
+
+/* 6.3 Botón "volver arriba" */
+#btn-top{
+  position:fixed; bottom:2rem; right:2rem; display:none;
+  padding:.6rem .9rem; border:none; border-radius:6px;
+  background:#333; color:#fff; font-size:.95rem; line-height:1;
+  cursor:pointer; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+#btn-top.show{ display:inline-flex; align-items:center; justify-content:center; }
+#btn-top:hover{ background:#111; }
+#btn-top:focus-visible{ outline:2px solid #66bbff; outline-offset:2px; }
+
+/* 6.4 Listas utilitarias */
+.no-bullets{ list-style:none; padding-left:0; margin:0; }
+.no-bullets--indent{ padding-left:1.5em; } /* variante con sangría */
+.compact-list li{ margin:.2em 0; line-height:1.05; }
+
+.bullets-disc{ list-style-type:disc; margin-left:1.5em; padding-left:.5em; }
+.bullets-disc li{ margin:.35em 0; }
+.bullets-disc li::marker{ color:#000; }
+
+.arrow-list{ list-style:none; margin-left:1.2em; padding-left:0; }
+.arrow-list li{ margin:.35em 0; }
+.arrow-list li::before{ content:"► "; color:#000; margin-right:.3em; }
+
+/* 6.5 Bloque artículo (listados) */
+.article{ margin-bottom:30px; }
+.article h3{ color:#004B87; margin-bottom:5px; }
+.article .authors{ font-style:italic; font-size:.9em; margin-bottom:10px; }
 .article .links a{
   margin-right:10px; font-size:.85em; background:#004B87; color:#fff;
   padding:5px 10px; border-radius:4px; text-decoration:none;
 }
 .article .links a:hover{ background:#003C6C; }
 
-.creditos h1 { font-size: 1.6rem; margin-bottom: .25rem; }
-.creditos h2 { font-size: 1.2rem; margin-top: 1.5rem; }
-.creditos h3 { font-size: 1rem; margin-top: 1rem; }
-.creditos dl { margin: 0; }
-.creditos dt { font-weight: 600; margin-top: .75rem; }
-.creditos dd { margin: .25rem 0 .75rem 0; }
+/* 6.6 Créditos */
+.creditos h1{ font-size:1.6rem; margin-bottom:.25rem; }
+.creditos h2{ font-size:1.2rem; margin-top:1.5rem; }
+.creditos h3{ font-size:1rem; margin-top:1rem; }
+.creditos dl{ margin:0; }
+.creditos dt{ font-weight:600; margin-top:.75rem; }
+.creditos dd{ margin:.25rem 0 .75rem 0; }
+.people{ list-style:disc; padding-left:1.25rem; margin:.5rem 0 1rem; }
+.people li{ margin:.35rem 0; }
+.affil{ display:block; margin-left:1rem; opacity:.9; }
 
-.people { list-style: disc; padding-left: 1.25rem; margin: .5rem 0 1rem; }
-.people li { margin: .35rem 0; }
-.affil { display: block; margin-left: 1rem; opacity: .9; }
-
-#directrices-autores {
-  font-family:'Georgia','Times New Roman',serif;
-  line-height:1.6; font-size:1rem; padding:1rem;
+/* 6.7 Directrices autores */
+#directrices-autores{
+  font-family:'Georgia','Times New Roman',serif; line-height:1.6; font-size:1rem; padding:1rem;
 }
 #directrices-autores h2,
 #directrices-autores h3,
@@ -176,219 +236,60 @@ nav.menu .has-submenu:hover .submenu { display: block; }
 #directrices-autores li{ margin-bottom:.5rem; line-height:1.5; }
 #directrices-autores p{ margin-bottom:1rem; text-align:justify; }
 
-.homepage-hero img{ display:block; width:100vw; max-width:100%; height:auto; }
-.homepage-hero{ margin-left:50%; transform:translateX(-50%); }
-
-/* ========================================
-   6. PIE DE PÁGINA / SITE FOOTER
-======================================== */
-footer, .site-footer{
-  clear:both; text-align:center; padding:30px 20px;
-  background-color:#003C6C; color:white; font-size:.95rem; line-height:1.6;
-  margin-top:40px; font-family:'Segoe UI',sans-serif;
-  border-top:8px solid transparent;
-  border-image:linear-gradient(to right,#005fa3,#66bbff);
-  border-image-slice:1;
-  box-shadow:0 -3px 6px rgba(0,0,0,.1);
-  view-transition-name:footer;
-}
-footer a, .site-footer a{ color:#cde4ff; text-decoration:underline; }
-footer a:hover, .site-footer a:hover{ color:#fff; }
-footer img, .site-footer img{ margin-left:8px; vertical-align:middle; }
-.site-footer p + p{ margin-top:1rem; }
-.footer-content{ max-width:1200px; margin:0 auto; padding:0 20px; }
-.site-footer em{ color:white !important; }
-
-/* Fix legibilidad en móvil / evitar justificado en footer */
-.site-footer p{
-  text-align:left;
-  hyphens:auto; -webkit-hyphens:auto;
-  overflow-wrap:break-word;
-}
-
-/* ========================================
-   7. RESPONSIVE DESIGN
-======================================== */
-@media screen and (max-width: 768px){
-  .sidebar, .content{ float:none; width:100%; padding:0; }
-  header, nav, .container{ padding-left:10px; padding-right:10px; }
-
-  #directrices-autores{ font-size:.95rem; padding:1rem .5rem; }
-  #directrices-autores h2{ font-size:1.5rem; }
-  #directrices-autores h3{ font-size:1.25rem; }
-  #directrices-autores h4{ font-size:1.1rem; }
-
-  .hamburger{ display:block; }
-
-  nav.menu ul.menu-root{
-    transform:translateX(-100%);
-    opacity:0; transition:transform .3s ease, opacity .3s ease;
-    flex-direction:column; position:absolute; top:60px; left:0; width:70%;
-    background-color:#003C6C; z-index:1000; border-radius:0 0 6px 6px;
-    box-shadow:0 4px 6px rgba(0,0,0,.2);
-    list-style:none; margin:0; padding:0;
-  }
-  nav.menu.open ul.menu-root{ transform:translateX(0); opacity:1; }
-  nav.menu .submenu{ position:static; box-shadow:none; padding-left:20px; }
-  nav.menu ul.menu-root > li{ border-bottom:1px solid #005fa3; }
-
-  /* TOC a ancho completo en móvil */
-  details.indice-contenido{ max-width:100%; }
-}
-
-/* ========================================
-   8. OTROS ESTILOS
-======================================== */
-.revista-nombre { color: white; font-style: italic; }
-
-/* ========================================
-   9. BREADCRUMBS (MIGAS DE PAN)
-======================================== */
-.breadcrumb{
-  font-size:.9rem; margin:1em 0 1.5em; padding:.5em 1em;
-  background-color:#f9f9f9; border-radius:5px;
-  display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
-}
-.breadcrumb a{
-  color:#0056b3 !important; text-decoration:none;
-  display:inline-flex; align-items:center; gap:4px;
-}
-.breadcrumb a:hover{ color:#003d80 !important; text-decoration:underline; }
-.breadcrumb span{ color:#555; }
-.breadcrumb svg{ width:14px; height:14px; fill:#0056b3; margin-bottom:1px; }
-
-/* Índice de contenidos (plegable) */
-details.indice-contenido{
-  background:#f9f9f9; border:1px solid #ddd; border-radius:8px;
-  max-width:300px; margin:0 0 2rem 0; padding:0;
-}
-details.indice-contenido > summary{
-  display:flex; align-items:center; gap:.5rem; cursor:pointer;
-  padding:.75rem 1rem; font-weight:700; font-size:1.2rem;
-  color:#003C6C; list-style:none; user-select:none;
-}
-details.indice-contenido > summary:focus-visible{
-  outline:2px solid #66bbff; outline-offset:2px; border-radius:6px;
-}
-details.indice-contenido > summary::-webkit-details-marker{ display:none; }
-details.indice-contenido > summary::marker{ content:""; }
-details.indice-contenido > summary::after{
-  content:"▾"; margin-left:auto; transition:transform .2s ease;
-}
-details.indice-contenido:not([open]) > summary::after{ transform:rotate(-90deg); }
-
-.indice-contenido .toc-body{
-  padding:0 .75rem .75rem; overflow:hidden;
-  transition:max-height .25s ease; max-height:800px;
-}
-.indice-contenido:not([open]) .toc-body{ max-height:0; }
-
-.indice-contenido .toc-body ul{ list-style:none; padding-left:0; margin:0; }
-.indice-contenido .toc-body ul li{
-  margin:.3rem 0; padding-left:.5rem; border-left:3px solid transparent;
-}
-.indice-contenido .toc-body ul li:hover{ border-left-color:#0066cc; }
-
-.indice-contenido a,
-.indice-contenido a:visited{ color:#0066cc; text-decoration:none; }
-.indice-contenido a:hover{ color:#004080; text-decoration:underline; }
-.indice-contenido a:focus,
-.indice-contenido a:active{ background:none; outline:none; }
-
-/* Botón Volver arriba */
-#btn-top{
-  position:fixed; bottom:2rem; right:2rem; display:none;
-  padding:.6rem .9rem; border:none; border-radius:6px;
-  background:#333; color:#fff; font-size:.95rem; line-height:1;
-  cursor:pointer; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,.25);
-}
-#btn-top.show{ display:inline-flex; align-items:center; justify-content:center; }
-#btn-top:hover{ background:#111; }
-#btn-top:focus-visible{ outline:2px solid #66bbff; outline-offset:2px; }
-@media (max-width:480px){ #btn-top{ bottom:1rem; right:1rem; } }
-
-/* Accesibilidad/usuarios con reduce motion */
-@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
-
-/* ========================================
-   10. ARCHIVO – lista con separadores
-======================================== */
-.issues-grid{
-  margin-top:1rem;
-  border-top:1px solid #e9eef5;
-}
-
-/* cada número como fila */
-.issue-card{
-  display:grid;
-  grid-template-columns:140px 1fr;
-  gap:1.25rem;
-  padding:1.25rem 0;
-  border-bottom:1px solid #e9eef5;
-  background:transparent;
-  box-shadow:none;
-  border-radius:0;
-}
-
-/* portada */
-.issue-card .cover{
-  width:140px; aspect-ratio:3/4; display:block; overflow:hidden;
-  border:1px solid #e5e7eb; border-radius:6px; background:#fff;
-}
-.issue-card .cover img{ width:100%; height:100%; object-fit:cover; display:block; }
-
-/* texto */
-.issue-card .meta{ align-self:center; }
-.issue-card .issue-title{ margin:0; font-size:1.05rem; line-height:1.35; }
-.issue-card .issue-title a{
-  color:#005b96;
-  text-decoration:none; font-weight:700;
-}
-.issue-card .issue-title a:hover{ text-decoration:underline; }
-.issue-card .issue-series{ margin-top:.15rem; color:#6b7280; font-size:.95rem; }
-.issue-card .issue-desc{ margin-top:.5rem; color:#475569; font-size:.95rem; }
-
-/* encabezado opcional por año/volumen */
-.issue-year{
-  margin:2rem 0 .5rem; padding-top:1rem;
-  border-top:1px solid #e9eef5; color:#0f172a; font-weight:600;
-}
-
-/* responsive Archivo */
-@media (max-width:640px){
-  .issue-card{
-    grid-template-columns:100px 1fr;
-    gap:.9rem; padding:1rem 0;
-  }
-  .issue-card .cover{ width:100px; }
-}
-
-/* Encabezados principales de secciones */
-.seccion-titulo{
-  font-family:'Lato','Open Sans','Segoe UI',sans-serif;
-  font-weight:700; font-size:1.6rem;
-  color:#005b96; margin-bottom:1rem;
-  border-bottom:2px solid #e5e5e5; padding-bottom:.3rem;
-}
-
-.menu-root a.active{ background-color:#005b96; color:#fff; cursor:default; }
-
-/* ========================================
-   11. tabla-omi (articulos)
-======================================== */
-.tabla-omi{
-  width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem;
-}
+/* 6.8 Tablas */
+.tabla-omi{ width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
 .tabla-omi th, .tabla-omi td{ border:1px solid #333; padding:.5rem .6rem; }
 .tabla-omi thead th{ text-align:center; font-weight:700; }
 .tabla-omi tbody td:nth-child(n+2){ text-align:center; }
 
-/* Contenedor responsive para tablas */
+/* Override solicitado: segunda columna a la izquierda */
+.tabla-omi tbody td:nth-child(2){ text-align:left; }
+
 .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .table-responsive table{ min-width:500px; }
 
-/* ===== Encabezado tipo artículo académico ===== */
-.paper-head{ background:none !important; padding:0; }
+/* Variante estilizada */
+.tabla-omi.mejorada{
+  width:100%; border-collapse:collapse; font-size:.95rem; background:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,.1); border-radius:6px; overflow:hidden;
+}
+.tabla-omi.mejorada th, .tabla-omi.mejorada td{
+  padding:.75em 1em; border-bottom:1px solid #ddd; text-align:center; vertical-align:middle;
+}
+.tabla-omi.mejorada thead th{ background:#f5f5f5; font-weight:bold; }
+.tabla-omi.mejorada tbody tr:nth-child(even){ background:#fafafa; }
+.tabla-omi.mejorada td:first-child{ text-align:left; }
+.nota-tabla{ margin-top:.5em; font-size:.9rem; color:#444; text-align:center; }
+
+/* 6.9 Autores (bloque reutilizable) */
+.authors-block{ margin:1rem 0 1.5rem; }
+.authors-block .author{ margin-bottom:1rem; }
+.authors-block .name{ display:block; font-weight:600; font-size:1.05rem; }
+.authors-block .affiliation{ display:block; font-size:.95rem; color:#444; }
+.authors-block .email{ display:block; font-size:.9rem; color:var(--omi-primary,#004B87); }
+.authors-block .email:hover{ text-decoration:underline; }
+
+/* 6.10 Referencias (LaTeX-like) */
+.biblio{ margin:0 0 2rem 0; }
+.biblio h1{ margin-bottom:.75rem; }
+.biblio--compact{ margin-top:1.25rem; }
+
+.refs{ list-style:none; margin:0; padding:0; font-size:.92rem; }
+.refs--hanging{ margin:.5rem 0 0 1.75rem; padding:0; }
+.refs li,
+.refs--hanging > li{
+  margin:.25rem 0; line-height:1.6; text-align:justify;
+  padding-left:1.25rem; text-indent:-1.25rem;
+}
+.refs a, .refs--wrap a{ color:#0056b3; text-decoration:none; word-break:break-word; overflow-wrap:anywhere; }
+.refs a:hover{ text-decoration:underline; }
+
+/* ========================================
+   7) VISTAS
+======================================== */
+
+/* 7.1 Vista de artículo */
+.paper-head{ background:none !important; padding:0; color:#222 !important; display:block; }
 .paper-head .title-es{
   margin:0 0 .6rem 0;
   font-family:'Georgia','Times New Roman',serif;
@@ -401,12 +302,18 @@ details.indice-contenido:not([open]) > summary::after{ transform:rotate(-90deg);
   font-weight:700; text-transform:uppercase; letter-spacing:.2px;
   font-size:1.4rem; line-height:1.25; color:#000;
 }
-.paper-head .authors{ font-size:1rem; margin:0 0 .5rem 0; }
+.paper-head .authors,
+.paper-head .affiliations{ color:#222 !important; }
+.paper-head .affiliations{ color:#444 !important; }
 .paper-head .authors a{ color:#1a5fb4; text-decoration:none; }
 .paper-head .authors a:hover{ text-decoration:underline; }
-.paper-head .affiliations{ font-size:1rem; font-style:italic; margin:0 0 1.25rem 0; }
 
-/* Escala progresiva */
+/* autores debajo del título cuando se requiera */
+.paper-head .title-es{ float:none !important; display:block; width:auto; }
+.paper-head .authors-block{ clear:both; display:block; margin-top:.5rem; }
+.authors-below-title .paper-head .authors-block{ grid-column:1 / -1; }
+
+/* escalado progresivo títulos */
 @media (min-width:768px){
   .paper-head .title-es{ font-size:2rem; }
   .paper-head .title-en{ font-size:1.8rem; }
@@ -416,139 +323,235 @@ details.indice-contenido:not([open]) > summary::after{ transform:rotate(-90deg);
   .paper-head .title-en{ font-size:2rem; }
 }
 
-/* ===== 12. Referencias tipo LaTeX ===== */
-.biblio{ margin:0 0 2rem 0; }
-.biblio h1{ margin-bottom:.75rem; }
-.refs{
-  list-style:none; margin:0; padding:0; font-size:.92rem;
-}
-.refs li{
-  margin:.25rem 0; line-height:1.35; text-align:justify;
-  text-indent:-1.6em; padding-left:1.6em;
-}
-.refs a{ color:#0056b3; text-decoration:none; word-break:break-word; }
-.refs a:hover{ text-decoration:underline; }
+/* Ajustes finos en view-article */
+/* Variante “ancho/extendido” solo cuando se pida */
+.view-article--wide .container{ background:transparent; box-shadow:none; border-radius:0; padding:0; }
 
-/* Vista de artículo: sin tarjeta detrás del título/contenido */
-.view-article .container{
-  background:transparent; box-shadow:none; border-radius:0; padding:0;
+.view-article .content, .view-article .sidebar{ padding:20px; }
+.view-article .paper-head .title-es{
+  font-size:clamp(1.6rem, 2.2vw + .8rem, 2.2rem) !important; line-height:1.25;
 }
-/* recuperamos aire interno para el contenido y la sidebar */
-.view-article .content,
-.view-article .sidebar{ padding:20px; }
-/* compacto en móvil */
+.view-article .paper-head .title-en{
+  font-size:clamp(1.2rem, 1.6vw + .6rem, 1.8rem) !important; line-height:1.25;
+}
+
+/* 7.2 Portada del número (en vista de artículo) */
+.issue-cover{ text-align:center; margin:0 0 1rem; }
+.issue-cover img{
+  width:100%; height:auto; max-width:320px; border:1px solid #e5e7eb; border-radius:8px; display:inline-block;
+}
+.issue-cover figcaption{ font-size:.9rem; color:#6b7280; margin-top:.35rem; }
+
+/* 7.3 Descargas / meta */
+.sep{ border:0; border-top:1px solid #e6e6e6; margin:1rem 0; }
+.paper-meta .meta-block + .meta-block{ border-top:1px solid #eee; padding-top:.75rem; margin-top:.75rem; }
+
+.badge{
+  display:inline-block; font-size:.85rem; padding:.25rem .5rem;
+  border:1px solid #ddd; border-radius:999px;
+}
+.downloads a{
+  display:inline-block; margin:.25rem .35rem .25rem 0; padding:.45rem .65rem;
+  border-radius:4px; background:#004B87; color:#fff; text-decoration:none; font-size:.9rem;
+}
+.downloads a:hover{ background:#003C6C; }
+
+.keywords span{
+  display:inline-block; margin:.15rem .35rem .15rem 0; padding:.2rem .5rem;
+  border:1px solid #ccc; border-radius:999px; font-size:.85rem;
+}
+.paper-section h3{ color:#003C6C; margin-top:1.5rem; }
+
+/* 7.4 Listados de números (Archivo) */
+.issues-grid{ margin-top:1rem; border-top:1px solid #e9eef5; }
+.issue-card{
+  display:grid; grid-template-columns:140px 1fr; gap:1.25rem;
+  padding:1.25rem 0; border-bottom:1px solid #e9eef5; background:transparent; box-shadow:none; border-radius:0;
+}
+.issue-card .cover{
+  width:140px; aspect-ratio:3/4; display:block; overflow:hidden;
+  border:1px solid #e5e7eb; border-radius:6px; background:#fff;
+}
+.issue-card .cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+.issue-card .meta{ align-self:center; }
+.issue-card .issue-title{ margin:0; font-size:1.05rem; line-height:1.35; }
+.issue-card .issue-title a{ color:#005b96; text-decoration:none; font-weight:700; }
+.issue-card .issue-title a:hover{ text-decoration:underline; }
+.issue-card .issue-series{ margin-top:.15rem; color:#6b7280; font-size:.95rem; }
+.issue-card .issue-desc{ margin-top:.5rem; color:#475569; font-size:.95rem; }
+
+.issue-year{
+  margin:2rem 0 .5rem; padding-top:1rem;
+  border-top:1px solid #e9eef5; color:#0f172a; font-weight:600;
+}
+
+/* Títulos de artículos en listados (sin visited morado) */
+.issue-title a, .issue-card .issue-title a{
+  color:#0b5cab; text-decoration:none; transition:color .15s ease;
+}
+.issue-title a:visited, .issue-card .issue-title a:visited{ color:#0b5cab; }
+.issue-title a:hover, .issue-card .issue-title a:hover{
+  color:#083f76; text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:2px;
+}
+.issue-title a:focus-visible, .issue-card .issue-title a:focus-visible{
+  outline:2px solid #66bbff; outline-offset:2px; border-radius:2px;
+}
+
+/* ========================================
+   8) FOOTER
+======================================== */
+footer, .site-footer{
+  clear:both; text-align:center; padding:30px 20px;
+  background:#003C6C; color:#fff; font-size:.95rem; line-height:1.6;
+  margin-top:40px; font-family:'Segoe UI',sans-serif;
+  border-top:8px solid transparent;
+  border-image:linear-gradient(to right,#005fa3,#66bbff);
+  border-image-slice:1;
+  box-shadow:0 -3px 6px rgba(0,0,0,.1);
+  view-transition-name: footer;
+}
+footer a, .site-footer a{ color:#cde4ff; text-decoration:underline; }
+footer a:hover, .site-footer a:hover{ color:#fff; }
+footer img, .site-footer img{ margin-left:8px; vertical-align:middle; }
+.site-footer p + p{ margin-top:1rem; }
+.footer-content{ max-width:1200px; margin:0 auto; padding:0 20px; }
+.site-footer em{ color:#fff !important; }
+
+/* legibilidad en móvil (evitar justificado en footer) */
+.site-footer p{
+  text-align:left; hyphens:auto; -webkit-hyphens:auto; overflow-wrap:break-word;
+}
+
+/* ========================================
+   9) UTILIDADES / ACCESIBILIDAD
+======================================== */
+/* Visor EPUB:
+   - Evita "rebote" (overscroll) y jitters del CFI.
+   - Desactiva scroll suave global SOLO aquí (intencional override). */
+#viewer{ overscroll-behavior: contain; }
+html, body{ scroll-behavior: auto; } /* mantener si el visor vive en la misma página */
+
+/* Utilidades para anexos / formularios impresos */
+.fill-line{ display:inline-block; min-width:4.5rem; border-bottom:1px solid var(--border,#999); line-height:1.1em; }
+.fill-line.medium{ min-width:6.5rem; }
+.fill-line.wide{ min-width:16rem; }
+
+.anexo-list{ padding-left:1.2rem; }
+.anexo-list > li{ margin:.65rem 0; }
+
+.options{ display:inline-block; margin-top:.25rem; }
+
+.underline{ display:inline-block; border-bottom:1px solid #000; vertical-align:middle; }
+.underline.sm{ width:50px; }
+.underline.xl{ width:300px; }
+
+.form-line, .check-line{ margin:6px 0; }
+.rule.lg{ border-bottom:1px solid #000; margin:10px 0 20px; height:1.2em; }
+
+/* ========================================
+   10) RESPONSIVO
+======================================== */
+@media (max-width:992px){
+  /* proporción columnas en wide */
+  .view-article .content { width:66%; }
+  .view-article .sidebar { width:32%; }
+}
+
 @media (max-width:768px){
-  .view-article .content,
-  .view-article .sidebar{ padding:12px 10px; }
-}
-/* --- Ajustes finos vista de artículo --- */
-.view-article .paper-head .title-es {
-  font-size: clamp(1.6rem, 2.2vw + .8rem, 2.2rem) !important;
-  line-height: 1.25;
-}
-.view-article .paper-head .title-en {
-  font-size: clamp(1.2rem, 1.6vw + .6rem, 1.8rem) !important;
-  line-height: 1.25;
+  .sidebar, .content{ float:none; width:100%; padding:0; }
+  header, nav, .container{ padding-left:10px; padding-right:10px; }
+
+  #directrices-autores{ font-size:.95rem; padding:1rem .5rem; }
+  #directrices-autores h2{ font-size:1.5rem; }
+  #directrices-autores h3{ font-size:1.25rem; }
+  #directrices-autores h4{ font-size:1.1rem; }
+
+  .hamburger{ display:block; }
+
+  /* Menú móvil tipo “drawer” lateral */
+  nav.menu ul.menu-root{
+    transform:translateX(-100%); opacity:0; transition:transform .3s ease, opacity .3s ease;
+    flex-direction:column; position:absolute; top:60px; left:0; width:70%;
+    background:#003C6C; z-index:1000; border-radius:0 0 6px 6px; box-shadow:0 4px 6px rgba(0,0,0,.2);
+    list-style:none; margin:0; padding:0;
+  }
+  nav.menu.open ul.menu-root{ transform:translateX(0); opacity:1; }
+  nav.menu .submenu{ position:static; box-shadow:none; padding-left:20px; }
+  nav.menu ul.menu-root > li{ border-bottom:1px solid #005fa3; }
+
+  /* TOC a ancho completo en móvil */
+  details.indice-contenido{ max-width:100%; }
+
+  /* Compacta paddings en vista artículo */
+  .view-article .content, .view-article .sidebar{ padding:12px 10px; }
 }
 
-/* Contención de la portada para que no “aplasté” el contenido */
-.issue-cover { text-align: center; margin: 0 0 1rem; }
-.issue-cover img {
-  width: 100%;
-  height: auto;
-  max-width: 320px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  display: inline-block;
-}
-.issue-cover figcaption {
-  font-size: .9rem;
-  color: #6b7280;
-  margin-top: .35rem;
+@media (max-width:640px){
+  .issue-card{ grid-template-columns:100px 1fr; gap:.9rem; padding:1rem 0; }
+  .issue-card .cover{ width:100px; }
 }
 
-/* Proporción columnas en wide */
-@media (min-width: 992px) {
-  .view-article .content { width: 66%; }
-  .view-article .sidebar { width: 32%; }
+@media (max-width:768px){
+  /* Portada de número más compacta */
+  .issue-cover img{ max-width:260px; }
 }
 
-/* En móviles, portada algo más compacta */
-@media (max-width: 768px) {
-  .issue-cover img { max-width: 260px; }
+/* Botón arriba en pantallas muy pequeñas */
+@media (max-width:480px){
+  #btn-top{ bottom:1rem; right:1rem; }
 }
 
-/* ===== Plantilla de artículo: utilidades locales ===== */
-.sep { border: 0; border-top: 1px solid #e6e6e6; margin: 1rem 0; }
-
-.paper-meta .meta-block + .meta-block {
-  border-top: 1px solid #eee;
-  padding-top: .75rem;
-  margin-top: .75rem;
+/* Preferencia de reduce motion */
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
 }
 
-/* Pill/etiquetas ligeras */
-.badge {
-  display: inline-block;
-  font-size: .85rem;
-  padding: .25rem .5rem;
-  border: 1px solid #ddd;
-  border-radius: 999px;
-}
+/* ====== Auxiliares y normalizaciones locales ====== */
+    .brand { display:flex; align-items:center; gap:.75rem; }
+    .brand img { height:40px; width:auto; }
+    .brand .site-name { font-weight:700; font-size:1.05rem; }
 
-/* Botones de descarga */
-.downloads a {
-  display: inline-block;
-  margin: .25rem .35rem .25rem 0;
-  padding: .45rem .65rem;
-  border-radius: 4px;
-  background: #004B87;
-  color: #fff;
-  text-decoration: none;
-  font-size: .9rem;
-}
-.downloads a:hover { background: #003C6C; }
+    /* Tablas OMI unificadas */
+    .table-responsive { overflow-x:auto; -webkit-overflow-scrolling: touch; }
+    .tabla-omi { width:100%; border-collapse:collapse; }
+    .tabla-omi th, .tabla-omi td { border:1px solid #ccc; padding:.5rem .6rem; vertical-align:top; }
+    .tabla-omi thead th { text-align:center; font-weight:700; background:#fafafa; }
 
-/* Chips de palabras clave */
-.keywords span {
-  display: inline-block;
-  margin: .15rem .35rem .15rem 0;
-  padding: .2rem .5rem;
-  border: 1px solid #ccc;
-  border-radius: 999px;
-  font-size: .85rem;
-}
+    /* Cuadros de respuesta/líneas */
+    .answer-line{ border-bottom:1px solid #333; height:1.2em; margin:.4rem 0; }
+    .answer-line.inline{ display:inline-block; width:6rem; vertical-align:middle;}
+    .linea-corta{ display:inline-block; width:2.5rem; border-bottom:1px solid #333; height:.9em; vertical-align:baseline; }
+    .line{ display:inline-block; border-bottom:1px solid #555; height:1.05em; vertical-align:baseline; }
+    .line.short{ width:5rem; } .line.long{ width:20rem; }
 
-/* Títulos dentro del cuerpo del artículo */
-.paper-section h3 { color: #003C6C; margin-top: 1.5rem; }
+    /* Anexos (bloques) */
+    .anexo { margin: 1.5rem 0; }
+    .anexo h1, .anexo h2 { margin:0 0 .6rem 0; }
+    .titulillo, .anx6-subtitle, .anexo-sub { margin:.2rem 0 1rem; }
 
-/* Fix de color para header del artículo (que es un <header> dentro del main) */
-.paper-head { color: #222 !important; }
-.paper-head .authors,
-.paper-head .affiliations { color: #222 !important; }
-.paper-head .affiliations { color: #444 !important; }
-.paper-head .authors a { color: #1a5fb4; }
-.paper-head .authors a:hover { text-decoration: underline; }
+    /* Grupos en línea (formularios) */
+    .inline-group{ display:block; }
+    .inline-group .gap{ display:inline-block; margin-left:1.25rem; }
+    .inline-group.tight .gap{ margin-left:1.1rem; }
 
-/* Títulos de artículos en listados (hover sin morado) */
-.issue-title a,
-.issue-card .issue-title a {
-  color: #0b5cab;
-  text-decoration: none;
-  transition: color .15s ease;
-}
-.issue-title a:visited,
-.issue-card .issue-title a:visited { color: #0b5cab; }
-.issue-title a:hover,
-.issue-card .issue-title a:hover {
-  color: #083f76;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  text-decoration-thickness: 2px;
-}
-.issue-title a:focus-visible,
-.issue-card .issue-title a:focus-visible {
-  outline: 2px solid #66bbff;
-  outline-offset: 2px;
-  border-radius: 2px;
-}
+    /* Anexo 6 tamaños */
+    .anx6-idrow { margin:.75rem 0 1rem; }
+    .anx6-questions { padding-left:1.2rem; line-height:1.6; }
+    .anx6-questions > li { margin:.85rem 0 1.1rem; }
+    .anx6-line{ display:inline-block; border-bottom:1px solid #666; vertical-align:middle; margin:-2px 0 2px 4px; }
+    .anx6-xs{ width:2.2rem; } .anx6-sm{ width:3rem; } .anx6-md{ width:6rem; } .anx6-lg{ width:8rem; } .anx6-xl{ width:16rem; }
+
+    /* Listas */
+    .preguntas, .incisos { padding-left:1.2rem; }
+    .subq{ margin:.4rem 0 0; }
+    .fig-centered figcaption{ font-style:italic; font-size:.95rem; margin-top:.25rem; text-align:center; }
+
+    /* Accesibilidad breadcrumb */
+    nav.breadcrumb { font-size:.95rem; }
+    nav.breadcrumb a { text-decoration: none; }
+
+    /* Ajustes menores de tipografía en Resumen/Abstract */
+    .level1 > h1 { margin-top:1.2rem; }
+
+    /* En tablas grandes, evita romper números/palabras críticas */
+    .tabla-omi td, .tabla-omi th { word-break: normal; overflow-wrap: anywhere; }

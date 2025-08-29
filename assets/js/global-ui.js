@@ -4,11 +4,14 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ===== NAV ACTIVO (sin falsos positivos y sin tocar breadcrumbs)
   const menuLinks = document.querySelectorAll("nav.menu a");
-  const currentLeaf = (location.pathname.split("/").pop() || "index.html");
+  // Soporta /ruta/ y /ruta/index.html
+  const path = location.pathname;
+  const currentLeaf =
+    (path.endsWith("/") ? "index.html" : path.split("/").pop()) || "index.html";
 
   menuLinks.forEach(link => {
     const href = link.getAttribute("href") || "";
-    const leaf = href.split("/").pop() || "";
+    const leaf = (href.endsWith("/") ? "index.html" : href.split("/").pop()) || "";
     if (leaf === currentLeaf) {
       link.classList.add("active");
       link.setAttribute("aria-current", "page");
@@ -17,19 +20,23 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // ===== View Transition API (solo navegación interna y sin hashes)
   menuLinks.forEach(link => {
-    if (
-      link.target !== "_blank" &&
-      !link.href.includes("#") &&
-      link.origin === location.origin &&
-      document.startViewTransition
-    ) {
-      link.addEventListener("click", function (e) {
-        e.preventDefault();
-        document.startViewTransition(() => {
-          window.location.href = this.href;
-        });
+    const sameOrigin = link.origin === location.origin;
+    const hasHash = link.getAttribute("href")?.includes("#");
+    const blocked = link.target === "_blank" ||
+                    link.hasAttribute("download") ||
+                    link.rel?.includes("external") ||
+                    link.dataset.noVt !== undefined;
+
+    if (!sameOrigin || hasHash || blocked || !document.startViewTransition) return;
+
+    link.addEventListener("click", function (e) {
+      // no interceptar modificadores ni clic no-izquierdo
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      document.startViewTransition(() => {
+        window.location.href = this.href;
       });
-    }
+    });
   });
 
   // ===== Menú hamburguesa (abrir/cerrar)
@@ -58,14 +65,12 @@ window.addEventListener("DOMContentLoaded", () => {
     const syncTocOpen = () => { toc.open = mqDesktop.matches; };
     syncTocOpen();
 
-    // Compat Safari viejo
     if (mqDesktop.addEventListener) {
       mqDesktop.addEventListener("change", syncTocOpen);
     } else if (mqDesktop.addListener) {
       mqDesktop.addListener(syncTocOpen);
     }
 
-    // Scroll suave + limpiar selección/focus + retraer en móvil tras click
     const tocLinks = toc.querySelectorAll('.toc-body a[href^="#"]');
     tocLinks.forEach(link => {
       link.addEventListener("click", (e) => {
@@ -78,7 +83,7 @@ window.addEventListener("DOMContentLoaded", () => {
         history.replaceState(null, "", `#${id}`);
 
         setTimeout(() => {
-          window.getSelection().removeAllRanges();
+          try { window.getSelection().removeAllRanges(); } catch {}
           link.blur();
           if (window.matchMedia("(max-width: 768px)").matches) {
             toc.open = false; // retraer en móvil
@@ -99,43 +104,52 @@ window.addEventListener("DOMContentLoaded", () => {
         target.scrollIntoView({ behavior: "smooth", block: "start" });
         history.replaceState(null, "", `#${id}`);
         setTimeout(() => {
-          window.getSelection().removeAllRanges();
+          try { window.getSelection().removeAllRanges(); } catch {}
           link.blur();
         }, 300);
       });
     });
   }
 
-  // ===== Botón "Volver arriba" (robusto con deduplicación real)
+  // ===== Botón "Volver arriba" (robusto con deduplicación y auto-inyección)
   function setupBackToTop() {
-    const btnTop = document.getElementById("btn-top");
-    if (!btnTop) return;
+    let btnTop = document.getElementById("btn-top");
+    if (!btnTop) {
+      // auto-inyecta si no estaba en el HTML
+      btnTop = document.createElement("button");
+      btnTop.id = "btn-top";
+      btnTop.type = "button";
+      btnTop.setAttribute("aria-label", "Volver arriba");
+      btnTop.textContent = "↑";
+      document.body.appendChild(btnTop);
+    }
 
-    // Si ya teníamos un handler previo, eliminarlo
+    // quita handler previo si existía
     if (window._backToTopToggle) {
       window.removeEventListener("scroll", window._backToTopToggle);
     }
 
+    const mqReduced = matchMedia("(prefers-reduced-motion: reduce)");
     const toggle = () => {
       btnTop.classList.toggle("show", window.scrollY > 300);
     };
-    // Guardamos referencia global para poder removerla después
     window._backToTopToggle = toggle;
 
     window.addEventListener("scroll", toggle, { passive: true });
-
     btnTop.onclick = () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      window.getSelection().removeAllRanges?.();
+      const behavior = mqReduced.matches ? "auto" : "smooth";
+      window.scrollTo({ top: 0, behavior });
+      try { window.getSelection().removeAllRanges(); } catch {}
+      btnTop.blur();
     };
 
-    // Estado inicial correcto sin esperar al primer scroll
-    toggle();
+    toggle(); // estado inicial
   }
 
-  // Ejecutar ahora que el DOM ya está listo (script con defer)
   setupBackToTop();
 
-  // Reenganchar si volvemos desde bfcache (atrás/adelante del navegador)
-  window.addEventListener("pageshow", setupBackToTop, { once: true });
+  // Reenganchar al volver desde bfcache
+  window.addEventListener("pageshow", (e) => {
+    if (e.persisted) setupBackToTop();
+  });
 });

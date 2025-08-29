@@ -62,221 +62,221 @@
   <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
   <script src="https://unpkg.com/epubjs@0.3.93/dist/epub.min.js"></script>
   <script>
-    const BOOK_URL = "art-001.epub";
-    let book, rendition;
-    const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-    const NS=k=>`omi.epub[${BOOK_URL}].${k}`, get=(k,d=null)=>localStorage.getItem(NS(k))??d, set=(k,v)=>localStorage.setItem(NS(k),v);
+  const BOOK_URL = "art-001.epub";
+  let book, rendition;
 
-    // CSS base + resets fuertes dentro de cada iframe
-    const STATIC_IFRAME_CSS = `
-      html, body { margin:0 !important; padding:0 !important; }
-      .omi-reader { margin: 1.25rem auto; max-width: 980px; line-height: 1.6; }
-      img, svg, video { max-width:100% !important; height:auto !important; }
-      :root, html, body, * {
-        -webkit-column-count: initial !important;
-        -moz-column-count: initial !important;
-        column-count: initial !important;
-        -webkit-column-width: auto !important;
-        -moz-column-width: auto !important;
-        column-width: auto !important;
-        -webkit-column-gap: normal !important;
-        -moz-column-gap: normal !important;
-        column-gap: normal !important;
+  const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
+  const NS=k=>`omi.epub[${BOOK_URL}].${k}`, get=(k,d=null)=>localStorage.getItem(NS(k))??d, set=(k,v)=>localStorage.setItem(NS(k),v);
 
-        height: auto !important; min-height: 0 !important; max-height: none !important;
-        overflow: visible !important; position: static !important;
+  // ===== CSS inyectado dentro de iframes =====
+  const STATIC_IFRAME_CSS = `
+    html, body { margin:0 !important; padding:0 !important; }
+    .omi-reader { margin: 1.25rem auto; max-width: 980px; line-height: 1.6; }
+    img, svg, video { max-width:100% !important; height:auto !important; }
+    :root, html, body, * {
+      -webkit-column-count: initial !important;
+      -moz-column-count: initial !important;
+      column-count: initial !important;
+      -webkit-column-width: auto !important;
+      -moz-column-width: auto !important;
+      column-width: auto !important;
+      -webkit-column-gap: normal !important;
+      -moz-column-gap: normal !important;
+      column-gap: normal !important;
+      height:auto !important; min-height:0 !important; max-height:none !important;
+      overflow: visible !important; position: static !important;
+      page-break-before:auto !important; page-break-after:auto !important; page-break-inside:auto !important;
+    }
+    a{ color:#2563eb !important; text-decoration:none !important }
+    h1{ font-size:1.6em !important } h2{ font-size:1.42em !important } h3{ font-size:1.34em !important } h4{ font-size:1.2em !important }
+  `;
+  const scaleSheet = pct => `
+    html, body, .omi-reader { font-size: ${pct}%; }
+    img, svg, video { image-rendering:auto; }
+  `;
+  const getScale=()=>parseInt(get("fs","100"),10);
+  const setScale=v=>set("fs",String(v));
 
-        page-break-before: auto !important; page-break-after: auto !important; page-break-inside: auto !important;
-        break-before: auto !important; break-after: auto !important; break-inside: auto !important;
+  // ===== Flags =====
+  let PRELOADING = false;
 
-        overflow-wrap: anywhere !important;
-        word-break: break-word !important;
+  function registerContentHooks(){
+    rendition.hooks.content.register(contents=>{
+      const doc=contents.document;
+      doc.documentElement.classList.add("omi-reader");
+      if(!doc.head.querySelector("style[data-omi-static]")){
+        const st=doc.createElement("style");
+        st.setAttribute("data-omi-static","");
+        st.textContent=STATIC_IFRAME_CSS;
+        doc.head.appendChild(st);
       }
-      @page { size:auto; margin:0; }
-    `;
-    const scaleSheet = pct => `
-      html { font-size: ${pct}% !important; }
-      * { font-size: inherit !important; }
-      body { font-size: 1em !important; }
-      h1 { font-size: 1.8em !important; }
-      h2 { font-size: 1.6em !important; }
-      h3 { font-size: 1.34em !important; }
-      h4 { font-size: 1.2em !important; }
-      h5 { font-size: 1.05em !important; }
-      h6 { font-size: 1em !important; }
-    `;
-    const getScale=()=>parseInt(get("fs","100"),10);
-    const setScale=v=>set("fs",String(v));
+      let dyn=doc.head.querySelector("style[data-omi-scale]");
+      if(!dyn){ dyn=doc.createElement("style"); dyn.setAttribute("data-omi-scale",""); doc.head.appendChild(dyn); }
+      dyn.textContent=scaleSheet(getScale());
+    });
+  }
+  function updateAllScales(p){
+    (rendition?.getContents()||[]).forEach(c=>{
+      const s=c.document.head.querySelector("style[data-omi-scale]");
+      if(s) s.textContent=scaleSheet(p);
+    });
+  }
 
-    function registerContentHooks(){
-      rendition.hooks.content.register(contents=>{
-        const doc=contents.document;
-        doc.documentElement.classList.add("omi-reader");
-        if(!doc.head.querySelector("style[data-omi-static]")){
-          const st=doc.createElement("style"); st.setAttribute("data-omi-static",""); st.textContent=STATIC_IFRAME_CSS; doc.head.appendChild(st);
-        }
-        let dyn=doc.head.querySelector("style[data-omi-scale]");
-        if(!dyn){ dyn=doc.createElement("style"); dyn.setAttribute("data-omi-scale",""); doc.head.appendChild(dyn); }
-        dyn.textContent=scaleSheet(getScale());
-      });
-    }
-    function updateAllScales(p){
-      rendition.getContents().forEach(c=>{
-        const s=c.document.head.querySelector("style[data-omi-scale]"); if(s) s.textContent=scaleSheet(p);
-      });
-    }
+  // ===== Relocated SIN auto-next =====
+  function onRelocated(loc){
+    if (PRELOADING) return; // no tocar estado durante precarga
+    const href=loc?.start?.href||"", cfiNow=loc?.start?.cfi||"";
+    set("loc", cfiNow);
+    if (window.highlightTOC) window.highlightTOC(href);
+  }
 
-    // Precarga TODO el spine, sin depender del scroll/atEnd; vuelve al CFI original
-    async function precargarTodoSilencioso() {
-      if (!book || !rendition) return;
-      const spine = await book.loaded.spine;
+  // ===== Precarga segura (sin mover al usuario) =====
+  async function precargarTodoSilencioso(){
+    if (!book || !rendition) return;
+    PRELOADING = true;
 
-      // guardar posición actual
-      const cfiOrig = rendition.currentLocation()?.start?.cfi || get("loc", null) || null;
+    const spine = await book.loaded.spine;
+    const container = $("#viewer");
+    const prevOpacity = container.style.opacity;
+    const cfiOrig = rendition.currentLocation()?.start?.cfi || get("loc", null) || null;
 
-      // ocultar mientras precarga para evitar parpadeos
-      const container = document.getElementById("viewer");
-      const prevVis = container.style.visibility;
-      container.style.visibility = "hidden";
+    // Pausar side-effects
+    rendition.off("relocated", onRelocated);
+    container.style.opacity = "0.01";
 
-      try {
-        // empezar desde el siguiente capítulo del que está visible (o desde 0 si no se detecta)
-        const hrefNow = rendition.currentLocation()?.start?.href || "";
-        const idxActual = spine.items.findIndex(it => it.href === hrefNow);
-        const startIdx = idxActual >= 0 ? idxActual + 1 : 0;
+    try {
+      const hrefNow = rendition.currentLocation()?.start?.href || "";
+      const idxActual = spine.items.findIndex(it => it.href === hrefNow);
+      const startIdx = idxActual >= 0 ? idxActual + 1 : 0;
 
-        for (let i = startIdx; i < spine.items.length; i++) {
-          await rendition.display(spine.items[i].href);
-          await new Promise(r => setTimeout(r, 0)); // ceder el hilo
-        }
-
-        // volver a la posición original
-        if (cfiOrig) await rendition.display(cfiOrig);
-      } catch (e) {
-        console.warn("Precarga silenciosa falló:", e);
-      } finally {
-        container.style.visibility = prevVis || "visible";
+      // Recorre el resto del spine, sin guardar posición
+      for (let i = startIdx; i < spine.items.length; i++) {
+        await rendition.display(spine.items[i].href);
+        await new Promise(r=>requestAnimationFrame(()=>r()));
       }
+      // Volver exactamente donde estaba
+      await rendition.display(cfiOrig || hrefNow || undefined);
+    } catch(e){
+      console.warn("Precarga silenciosa falló:", e);
+    } finally {
+      // Reanudar side-effects
+      rendition.on("relocated", onRelocated);
+      container.style.opacity = prevOpacity || "";
+      PRELOADING = false;
     }
+  }
 
-    async function startRendition({continuous=true, cfi=null}={}){
-      if(rendition){ rendition.destroy(); $("#viewer").innerHTML=""; }
+  // ===== Iniciar/alternar modo de lectura =====
+  async function startRendition({continuous=true, cfi=null}={}){
+    if(rendition){ try{ rendition.destroy(); }catch{} $("#viewer").innerHTML=""; }
 
-      // Mejor con dimensiones numéricas y resize dinámico
-      const container = $("#viewer");
-      const dims = () => ({ w: container.clientWidth, h: container.clientHeight });
+    const container = $("#viewer");
+    const dims = () => ({ w: container.clientWidth, h: container.clientHeight });
 
-      rendition = book.renderTo("viewer", {
-        width: dims().w,
-        height: dims().h,
-        flow: "scrolled",
-        manager: "continuous",
-        spread: "none"
-      });
-      new ResizeObserver(() => {
-        const { w, h } = dims();
-        rendition.resize(w, h);
-      }).observe(container);
+    const baseOpts = continuous
+      ? { flow:"scrolled", manager:"continuous", spread:"none" }
+      : { flow:"paginated", spread:"auto" };
 
-      registerContentHooks();
-      updateAllScales(getScale());
+    rendition = book.renderTo("viewer", { width:dims().w, height:dims().h, ...baseOpts });
 
-      // Guardado de posición y TOC activo
-      rendition.on("relocated", loc=>{
-        const href=loc?.start?.href||"", cfiNow=loc?.start?.cfi||"";
-        set("loc", cfiNow);
-        highlightTOC && highlightTOC(href);
-        if(continuous && loc?.atEnd){ rendition.next(); }
-      });
+    new ResizeObserver(()=>{ const {w,h}=dims(); rendition.resize(w,h); }).observe(container);
 
-      // Mostrar donde ibas o inicio
-      const enteredCfi = cfi || get("loc", null) || null;
-      await rendition.display(enteredCfi || undefined);
+    registerContentHooks();
+    updateAllScales(getScale());
+    rendition.on("relocated", onRelocated);
 
-      // PRIMING: precargar 2 vistas y regresar a la posición (si había)
-      try {
-        await rendition.next();
-        await rendition.next();
-        if (enteredCfi) await rendition.display(enteredCfi);
-      } catch(e) { console.warn("Priming falló (no es grave):", e); }
+    const enteredCfi = cfi || get("loc", null) || null;
+    await rendition.display(enteredCfi || undefined);
 
-      // Empuje por scroll (más temprano)
-      let pushing=false;
-      container.addEventListener("scroll",()=>{
-        if(!continuous||pushing) return;
+    // Empuje por scroll (solo en continuo), con throttle
+    let pushing=false, ticking=false;
+    container.addEventListener("scroll", ()=>{
+      if(!continuous || pushing || PRELOADING || ticking) return;
+      ticking = true;
+      requestAnimationFrame(()=>{
         const nearBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 600;
-        if(nearBottom){ pushing=true; rendition.next().finally(()=>pushing=false); }
-      },{passive:true});
-    }
-
-    function buildTOC(navTOC){
-      const ul=$("#toc"); ul.innerHTML="";
-      const norm=h=>(h||"").split("#")[0];
-      navTOC.forEach(item=>{
-        const li=document.createElement("li");
-        const depth=(item.parent?(item.parent.parent?3:2):1);
-        li.className=`lvl-${depth}`;
-        const a=document.createElement("a");
-        a.href="javascript:void(0)"; a.dataset.href=item.href; a.textContent=item.label||item.text||"Sección";
-        a.onclick=()=>rendition.display(item.href);
-        li.appendChild(a); ul.appendChild(li);
-        (item.subitems||[]).forEach(sub=>{
-          const sli=document.createElement("li"); sli.className="lvl-2";
-          const sa=document.createElement("a"); sa.href="javascript:void(0)"; sa.dataset.href=sub.href; sa.textContent=sub.label||sub.text||"Sección";
-          sa.onclick=()=>rendition.display(sub.href); sli.appendChild(sa); ul.appendChild(sli);
-        });
+        if(nearBottom){
+          pushing = true;
+          rendition.next().finally(()=>{ pushing=false; });
+        }
+        ticking = false;
       });
-      window.highlightTOC=currentHref=>{
-        const cur=norm(currentHref||"");
-        $$(".toc a").forEach(a=>a.classList.toggle("active", norm(a.dataset.href||"")===cur));
+    }, {passive:true});
+  }
+
+  // ===== TOC =====
+  function buildTOC(navTOC){
+    const ul=$("#toc"); ul.innerHTML="";
+    const norm=h=>(h||"").split("#")[0];
+    navTOC.forEach(item=>{
+      const li=document.createElement("li");
+      const depth=(item.parent?(item.parent.parent?3:2):1);
+      li.className=`lvl-${depth}`;
+      const a=document.createElement("a");
+      a.href="javascript:void(0)"; a.dataset.href=item.href; a.textContent=item.label||item.text||"Sección";
+      a.onclick=()=>rendition.display(item.href);
+      li.appendChild(a); ul.appendChild(li);
+      (item.subitems||[]).forEach(sub=>{
+        const sli=document.createElement("li"); sli.className="lvl-2";
+        const sa=document.createElement("a"); sa.href="javascript:void(0)"; sa.dataset.href=sub.href; sa.textContent=sub.label||sub.text||"Sección";
+        sa.onclick=()=>rendition.display(sub.href); sli.appendChild(sa); ul.appendChild(sli);
+      });
+    });
+    window.highlightTOC=currentHref=>{
+      const cur=norm(currentHref||"");
+      $$(".toc a").forEach(a=>a.classList.toggle("active", norm(a.dataset.href||"")===cur));
+    };
+  }
+
+  // ===== Boot =====
+  (async function(){
+    try{
+      const res=await fetch(BOOK_URL,{cache:"no-store"}); const buf=await res.arrayBuffer();
+      book=ePub(buf);
+
+      const nav=await book.loaded.navigation; buildTOC(nav.toc || []);
+      const continuousDefault = get("continuous","1")==="1";
+      await startRendition({continuous: continuousDefault});
+
+      // Precarga diferida y segura
+      setTimeout(()=>{ precargarTodoSilencioso(); }, 150);
+
+      // Controles
+      $("#prev").onclick=()=>rendition.prev();
+      $("#next").onclick=()=>rendition.next();
+
+      const clamp=v=>Math.max(70,Math.min(200,v));
+      $("#bigger").onclick=()=>{ const n=clamp(getScale()+10); setScale(n); updateAllScales(n); };
+      $("#smaller").onclick=()=>{ const n=clamp(getScale()-10); setScale(n); updateAllScales(n); };
+
+      $("#modeToggle").checked = continuousDefault;
+      $("#modeToggle").addEventListener("change", async e=>{
+        const cont=e.target.checked; set("continuous",cont?"1":"0");
+        const cfi=rendition.currentLocation()?.start?.cfi||null;
+        await startRendition({continuous:cont, cfi});
+        setTimeout(()=>{ precargarTodoSilencioso(); }, 150);
+      });
+
+      $("#loadAll").onclick = precargarTodoSilencioso;
+
+      $("#resetPos").onclick = async ()=>{
+        try { localStorage.removeItem(NS("loc")); } catch {}
+        await startRendition({ continuous: true, cfi: null });
+        setTimeout(()=>{ precargarTodoSilencioso(); }, 150);
       };
+
+      // Hamburguesa móvil
+      const panel=$("#panel");
+      $("#btnNav").onclick=()=>panel.classList.toggle("open");
+      $("#toc").addEventListener("click",()=>panel.classList.remove("open"));
+
+    }catch(err){
+      console.error("Error inicializando visor:",err);
+      alert("No se pudo abrir el EPUB. Revisa la consola.");
     }
+  })();
+</script>
 
-    (async function(){
-      try{
-        const res=await fetch(BOOK_URL,{cache:"no-store"}); const buf=await res.arrayBuffer();
-        book=ePub(buf);
 
-        const nav=await book.loaded.navigation; buildTOC(nav.toc || []);
-        await startRendition({continuous:true});
-
-        // Precarga silenciosa de TODO el libro tras montar la primera vista
-        setTimeout(() => { precargarTodoSilencioso(); }, 50);
-
-        // Controles
-        $("#prev").onclick=()=>rendition.prev();
-        $("#next").onclick=()=>rendition.next();
-        const clamp=v=>Math.max(70,Math.min(200,v));
-        $("#bigger").onclick=()=>{ const n=clamp(parseInt(get("fs","100"),10)+10); set("fs",String(n)); updateAllScales(n); };
-        $("#smaller").onclick=()=>{ const n=clamp(parseInt(get("fs","100"),10)-10); set("fs",String(n)); updateAllScales(n); };
-
-        $("#modeToggle").addEventListener("change",async e=>{
-          const cont=e.target.checked; set("continuous",cont?"1":"0");
-          const cfi=rendition.currentLocation()?.start?.cfi||null;
-          await startRendition({continuous:cont,cfi}); updateAllScales(parseInt(get("fs","100"),10));
-          setTimeout(() => { precargarTodoSilencioso(); }, 50);
-        });
-
-        // “Cargar todo” ahora usa la precarga silenciosa
-        $("#loadAll").onclick = precargarTodoSilencioso;
-
-        // Reset lectura (borra CFI y reinicia)
-        $("#resetPos").onclick = async ()=>{
-          try { localStorage.removeItem(NS("loc")); } catch {}
-          await startRendition({ continuous: true, cfi: null });
-          setTimeout(() => { precargarTodoSilencioso(); }, 50);
-        };
-
-        // Hamburguesa móvil
-        const panel=$("#panel");
-        $("#btnNav").onclick=()=>panel.classList.toggle("open");
-        $("#toc").addEventListener("click",()=>panel.classList.remove("open"));
-
-      }catch(err){
-        console.error("Error inicializando visor:",err);
-        alert("No se pudo abrir el EPUB. Revisa la consola.");
-      }
-    })();
-  </script>
 </body>
 </html>
