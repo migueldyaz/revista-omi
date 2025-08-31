@@ -1,1 +1,149 @@
-<?xml version='1.0'?><urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'></urlset>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Páginas principales -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/index.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.00</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/archivo.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/acerca.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/comite.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/directrices.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/rights.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.50</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/sitemap.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.40</priority>
+  </url>
+
+  <!-- Número Vol. 2 Núm. 1 (2025) -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/numero-2025-01.html</loc>
+    <lastmod>2025-08-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Artículo 001 -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-001/artview-001.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-001/html/art-001.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-001/pdf/art-001.pdf</loc>
+    <lastmod>2025-01-03</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Artículo 002 -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-002/artview-002.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-002/html/art-002.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-002/pdf/art-002.pdf</loc>
+    <lastmod>2025-01-03</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Artículo 003 -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-003/artview-003.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-003/html/art-003.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-003/pdf/art-003.pdf</loc>
+    <lastmod>2025-01-03</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Artículo 004 -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-004/artview-004.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-004/html/art-004.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-004/pdf/art-004.pdf</loc>
+    <lastmod>2025-01-03</lastmod>
+    <priority>0.50</priority>
+  </url>
+
+  <!-- Artículo 005 -->
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-005/artview-005.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-005/html/art-005.html</loc>
+    <lastmod>2025-01-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://tu-dominio.example/revista-omi/assets/view/202501/art-005/pdf/art-005.pdf</loc>
+    <lastmod>2025-01-03</lastmod>
+    <priority>0.50</priority>
+  </url>
+</urlset>

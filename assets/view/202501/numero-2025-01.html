@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>Número Actual | Revista OMI Internacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Volumen 2, Número 1 (2025) de la Revista OMI Internacional: índice del número con enlaces a PDF, HTML y EPUB de cada artículo." />
+  <link rel="canonical" href="/assets/view/202501/numero-2025-01.html" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Base dinámico: "/" en local y "/revista-umi/" en GitHub Pages -->
   <script>
@@ -18,7 +23,6 @@
   <link rel="stylesheet" href="assets/style.css">
   <!--<link rel="stylesheet" href="assets/style.omi.patch.css">-->
 
-
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="favicon.png">
@@ -27,17 +31,17 @@
 
 <header>
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
-  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" loading="lazy" decoding="async" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
-<nav class="menu">
+<nav class="menu" aria-label="Menú principal">
   <ul class="menu-root">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="assets/archivo.html">Archivo</a></li>
     <li><a href="directrices.html">Directrices para Autores</a></li>
     <li class="has-submenu">
-      <a href="#">Acerca de</a>
+      <a href="acerca.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">Acerca de</a>
       <ul class="submenu">
         <li><a href="acerca.html">Acerca de</a></li>
         <li><a href="comite.html">Comité Editorial</a></li>
@@ -59,7 +63,7 @@
     <!--<input type="text" placeholder="Buscar..." style="width:100%;padding:5px" -->
     <figure class="issue-cover">
       <a href="assets/view/202501/numero-2025-01.html">
-        <img src="assets/img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png" alt="Portada Vol. 2 Núm. 1 (2025)">
+        <img src="assets/img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png" alt="Portada Vol. 2 Núm. 1 (2025)" loading="lazy" decoding="async">
       </a>
       <figcaption>Vol. 2 Núm. 1 (2025)</figcaption>
     </figure>
@@ -126,6 +130,7 @@
         <a href="assets/view/202501/art-004/epub/art-004.html">EPUB</a>
         <a href="#">XMLJATS</a>
       </div>
+    </div>
 
     <div class="article">
       <h3 class="issue-title"><a href="assets/view/202501/art-005/artview-005.html">Revolucionando la enseñanza de la historia en Ciego de Ávila, Cuba</a></h3>
@@ -145,11 +150,11 @@
   <div class="footer-content">
     <p>
       Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
-      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener noreferrer external">e-ISSN: 3061-7251</a>).<br>
       Esta revista publica bajo una licencia
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Especificación CC 4.0" target="_blank" rel="noopener">
-        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer external" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Especificación CC 4.0" target="_blank" rel="noopener noreferrer external">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" loading="lazy" decoding="async" />
       </a>
     </p>
 

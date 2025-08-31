@@ -22,38 +22,37 @@
   <h1>Revista OMI Internacional</h1>
 </header>
 
-<nav class="menu">
+<nav class="menu" aria-label="Menú principal">
   <ul class="menu-root">
-  <li><a href="../index.html">Inicio</a></li>
-  <li><a href="#" class="active" onclick="return false;">Archivo</a></li>
-  <li><a href="../directrices.html">Directrices para Autores</a></li>
-  <li class="has-submenu">
-    <a href="#">Acerca de</a>
-    <ul class="submenu">
-      <li><a href="../acerca.html">Acerca de</a></li>
-      <li><a href="../comite.html">Comité Editorial</a></li>
-      <li><a href="../rights.html">Derechos de Autor y Derechos Conexos</a></li>
-    </ul>
-  </li>
-</ul>
+    <li><a href="../index.html">Inicio</a></li>
+    <li><a href="archivo.html" class="is-active" aria-current="page">Archivo</a></li>
+    <li><a href="../directrices.html">Directrices para Autores</a></li>
+    <li class="has-submenu">
+      <a href="#">Acerca de</a>
+      <ul class="submenu">
+        <li><a href="../acerca.html">Acerca de</a></li>
+        <li><a href="../comite.html">Comité Editorial</a></li>
+        <li><a href="../rights.html">Derechos de Autor y Derechos Conexos</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
 
 <!-- Breadcrumbs -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
-<script src="js/breadcrumb-map.js"></script>
-<script src="js/breadcrumb-render.js"></script>
+<script src="js/breadcrumb-map.js" defer></script>
+<script src="js/breadcrumb-render.js" defer></script>
 
 <main class="container">
   <h2 class="seccion-titulo">Archivo</h2>
 
-  
   <!-- Rejilla de números -->
   <section class="issues-grid" aria-label="Listado de números">
-        <!-- Tarjeta 2 -->
+    <!-- Tarjeta 2 -->
     <!--<article class="issue-card">
       <a class="cover" href="#" aria-label="Abrir número Enero–Junio 2025" onclick="return false;">
-  <img src="img/thumbs/c338c074-9066-4c4e-9ab0-39cb3b631dde.png" alt="Portada Enero–Junio 2025">
-</a>
+        <img src="img/thumbs/c338c074-9066-4c4e-9ab0-39cb3b631dde.png" alt="Portada Enero–Junio 2025">
+      </a>
       <div class="meta">
         <h3 class="issue-title">
           <a href="view/202501/numero-2025-01.html">Enero–Junio</a>
@@ -62,20 +61,20 @@
         <p class="issue-desc">Revista OMI</p>
       </div>
     </article>-->
-    
-<!-- Tarjeta 1 -->
-<article class="issue-card">
-  <a class="cover" href="view/202501/numero-2025-01.html" aria-label="Abrir número Enero–Junio 2025">
-    <img src="img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png" alt="Portada Enero–Junio 2025">
-  </a>
-  <div class="meta">
-    <h3 class="issue-title">
-      <a href="view/202501/numero-2025-01.html">Enero–Junio</a>
-    </h3>
-    <div class="issue-series">Vol. 1 Núm. 1 (2025)</div>
-    <p class="issue-desc">Revista OMI</p>
-  </div>
-</article>
+
+    <!-- Tarjeta 1 -->
+    <article class="issue-card">
+      <a class="cover" href="view/202501/numero-2025-01.html" aria-label="Abrir número Enero–Junio 2025">
+        <img src="img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png" alt="Portada Enero–Junio 2025">
+      </a>
+      <div class="meta">
+        <h3 class="issue-title">
+          <a href="view/202501/numero-2025-01.html">Enero–Junio</a>
+        </h3>
+        <div class="issue-series">Vol. 1 Núm. 1 (2025)</div>
+        <p class="issue-desc">Revista OMI</p>
+      </div>
+    </article>
 
     <!-- Tarjeta 0 -->
     <article class="issue-card">

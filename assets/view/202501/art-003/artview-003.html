@@ -21,7 +21,6 @@
   <meta name="citation_author" content="Eisler Matías Martínez">
   <meta name="citation_author" content="Aray Pérez Pino">
   <meta name="citation_language" content="es">
-  <meta name="citation_publication_date" content="2025/01/03">
   <meta name="citation_volume" content="2">
   <meta name="citation_issue" content="1">
   <meta name="citation_firstpage" content="???">
@@ -32,6 +31,17 @@
   <meta name="citation_keywords" content="atención a la diversidad">
   <meta name="citation_keywords" content="preparación">
   <meta name="citation_fulltext_html_url" content="assets/view/202501/art-003/html/art-003.html">
+<link rel="canonical" href="assets/view/202501/art-003/artview-003.html" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="La preparación de los directores de la educación primaria para la atención a la diversidad con enfoque inclusivo" />
+<meta property="og:description" content="Diagnóstico del estado de preparación de directores de primaria para la atención a la diversidad con enfoque inclusivo." />
+<meta property="og:url" content="assets/view/202501/art-003/artview-003.html" />
+<meta property="og:site_name" content="Revista OMI Internacional" />
+<meta property="og:locale" content="es_MX" />
+<meta property="og:image" content="assets/img/og/omi-social-card.jpg" />
+<meta name="twitter:card" content="summary" />
+<meta name="description" content="Diagnóstico del estado de preparación de directores de primaria para la atención a la diversidad con enfoque inclusivo.">
 
 
   <!-- Base dinámico -->
@@ -73,8 +83,9 @@
 </nav>
 <!-- Breadcrumbs -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
-<script src="assets/js/breadcrumb-map.js"></script>
-<script src="assets/js/breadcrumb-render.js?v=3"></script>
+<script src="assets/js/breadcrumb-map.js" defer></script>
+<script src="assets/js/breadcrumb-render.js?v=3" defer></script>
+
 
 
 <main class="container">
@@ -217,20 +228,21 @@
 
 <!-- Snippet para actualizar páginas cuando tengas la versión impresa -->
 <script>
-  document.addEventListener("DOMContentLoaded", function(){
-    const pages = "???–???";  // ej. "149–160"
-    const fp = document.querySelector('meta[name="citation_firstpage"]');
-    const lp = document.querySelector('meta[name="citation_lastpage"]');
-    if (pages.includes("–") && fp && lp){
-      const [first, last] = pages.split("–").map(s => s.trim());
-      if (first) fp.setAttribute("content", first);
-      if (last)  lp.setAttribute("content",  last);
-    }
+document.addEventListener("DOMContentLoaded", function(){
+  const pages = "???–???";  // ej. "149–160"
+  const isValid = /^\d+\s*–\s*\d+$/.test(pages); // solo si tiene números reales
+  const fp = document.querySelector('meta[name="citation_firstpage"]');
+  const lp = document.querySelector('meta[name="citation_lastpage"]');
+  if (isValid && fp && lp){
+    const [first, last] = pages.split("–").map(s => s.trim());
+    fp.setAttribute("content", first);
+    lp.setAttribute("content", last);
     const infoMeta = document.querySelector(".paper-info .meta");
     if (infoMeta){ infoMeta.innerHTML = "<strong>Páginas:</strong> " + pages; }
     const citeP = document.querySelector(".paper-meta .meta-block p");
-    if (citeP){ citeP.innerHTML = citeP.innerHTML.replace(/\\?\\?\\?–\\?\\?\\?/, pages); }
-  });
+    if (citeP){ citeP.innerHTML = citeP.innerHTML.replace(/\?\?\?–\?\?\?/, pages); }
+  }
+});
 </script>
 </body>
 </html>

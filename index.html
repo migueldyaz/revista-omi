@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>Revista OMI Internacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sitio oficial de la Revista OMI Internacional: números publicados, artículos científicos y directrices para autores." />
+  <link rel="canonical" href="/index.html" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -10,61 +15,116 @@
 </head>
 <body>
 <header>
-<!-- Botón hamburguesa visible solo en pantallas pequeñas -->
- <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
- 
+  <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
+  <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
   <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
-<nav class="menu">
+<nav class="menu" aria-label="Menú principal">
   <ul class="menu-root">
-  <li><a href="index.html">Inicio</a></li>
-  <li><a href="assets/archivo.html">Archivo</a></li>
-  <li><a href="directrices.html">Directrices para Autores</a></li>
-  <li class="has-submenu">
-    <a href="#">Acerca de</a>
-    <ul class="submenu">
-      <li><a href="acerca.html">Acerca de</a></li>
-      <li><a href="comite.html">Comité Editorial</a></li>
-      <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
-    </ul>
-  </li>
-</ul>
-
+    <li><a href="index.html" class="is-active">Inicio</a></li>
+    <li><a href="assets/archivo.html">Archivo</a></li>
+    <li><a href="directrices.html">Directrices para Autores</a></li>
+    <li class="has-submenu">
+      <a href="acerca.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">Acerca de</a>
+      <ul class="submenu">
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
+      </ul>
+    </li>
+  </ul>
 </nav>
-<!-- Breadcrumbs dinámicos con ícono de casa -->
+
+<!-- Breadcrumbs dinámicos -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
+<script src="assets/js/breadcrumb-map.js" defer></script>
+<script src="assets/js/breadcrumb-render.js" defer></script>
 
-<!-- Mapa de breadcrumbs -->
-<script src="assets/js/breadcrumb-map.js"></script>
+<!-- ===== Secuencia de presentación ===== -->
+<section class="scroll-seq" id="scroll-seq" aria-label="Presentación">
+  <!-- Paso 1 (sin botones) -->
+  <article class="seq-step is-active">
+    <h2 class="seq-title">Bienvenido</h2>
+    <img src="assets/img/banner_omi.png" alt="Revista OMI" class="seq-img" loading="eager" decoding="async" fetchpriority="high">
+    <p class="seq-text">
+      Este es el sitio oficial de la Revista OMI Internacional. Aquí encontrarás los números publicados,
+      artículos científicos y directrices para autores.
+    </p>
+  </article>
 
-<!-- Renderizado de breadcrumb dinámico -->
-<script src="assets/js/breadcrumb-render.js"></script>
+  <!-- Paso 2 -->
+  <article class="seq-step">
+    <h2 class="seq-title">Flujo continuo con edición semestral</h2>
+    <p class="seq-text">
+      Publicamos en <strong>flujo continuo con edición semestral</strong>. El número se actualiza de forma progresiva:
+      los artículos aceptados se incorporan en cuanto concluye el proceso de evaluación académica. Áreas de interés
+      (no limitativas): educación y sociedad; tecnología educativa y TIC; evaluación del aprendizaje; gestión y
+      dirección universitaria; cultura científica; y experiencias didácticas con sustento en investigación.
+    </p>
+    <div class="seq-ctas">
+      <a class="btn btn-primary" href="assets/archivo.html">Ver revista</a>
+      <a class="btn btn-ghost" href="assets/archivo.html#numero-actual">Número actual</a>
+    </div>
+  </article>
 
+  <!-- Paso 3 -->
+  <article class="seq-step">
+    <h2 class="seq-title">Compromiso de la Universidad OMI</h2>
+    <p class="seq-text">
+      Nace del compromiso de la Universidad OMI con la excelencia académica, la innovación educativa y los valores
+      que guían su misión —honestidad, respeto, responsabilidad y bien común—, promoviendo el intercambio científico
+      y la socialización de resultados entre docentes, investigadores y estudiantes de licenciatura y posgrado.
+    </p>
+    <div class="seq-ctas">
+      <a class="btn btn-primary" href="assets/archivo.html">Ver revista</a>
+      <a class="btn btn-ghost" href="assets/archivo.html#numero-actual">Número actual</a>
+    </div>
+  </article>
 
-<div class="container">
-  <h2>Bienvenido</h2>
-  <p>Este es el sitio oficial de la Revista OMI Internacional. Aquí encontrarás los números publicados, artículos científicos y directrices para autores.</p>
-  
-  <div class="homepage-hero">
-    <img src="assets/img/banner_omi.png" alt="Portada OMI" loading="eager">
-  </div>
-</div>
+  <!-- Paso 4 -->
+  <article class="seq-step">
+    <h2 class="seq-title">Publicación revisada por pares</h2>
+    <p class="seq-text">
+      La <strong>Revista OMI Internacional</strong> es una publicación científica revisada por pares del Centro de
+      Investigación de la Universidad OMI. Su propósito es difundir producción académica nacional e internacional
+      con rigor metodológico sobre problemáticas del ámbito educativo y su relación con la tecnología, la gestión y
+      las ciencias sociales aplicadas.
+    </p>
+    <div class="seq-ctas">
+      <a class="btn btn-primary" href="assets/archivo.html">Ver revista</a>
+      <a class="btn btn-ghost" href="assets/archivo.html#numero-actual">Número actual</a>
+    </div>
+  </article>
 
-<!-- Footer fuera del .container -->
+  <!-- Paso 5 -->
+  <article class="seq-step">
+    <h2 class="seq-title">Licencia de uso (CC BY-NC 4.0)</h2>
+    <p class="seq-text">
+      La Revista OMI publica sus contenidos bajo licencia Creative Commons Atribución–NoComercial 4.0
+      Internacional (CC BY-NC 4.0). Se permite su copia, adaptación y distribución por cualquier medio,
+      siempre que se reconozca la autoría y no exista uso comercial.
+    </p>
+    <div class="seq-ctas">
+      <a class="btn btn-primary" href="assets/archivo.html">Ver revista</a>
+      <a class="btn btn-ghost" href="assets/archivo.html#numero-actual">Número actual</a>
+    </div>
+  </article>
+</section>
+<!-- ===== /Secuencia ===== -->
+
 <footer class="site-footer">
   <div class="footer-content">
     <p>
       Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
-      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener noreferrer external">e-ISSN: 3061-7251</a>).<br>
       Esta revista publica bajo una licencia
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
-        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer external" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener noreferrer external">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" loading="lazy" decoding="async" />
       </a>
     </p>
-
     <p>Universidad OMI Centro de Investigación<br>
       <strong>Dirección:</strong> Av. Anillo Periférico 42, Col. Constitución de 1917, Alcaldía Iztapalapa, C.P. 09260, Ciudad de México. <br>
       <strong>Teléfonos:</strong> (55) 70897395 y (55) 70897397.<br>
@@ -72,7 +132,8 @@
   </div>
 </footer>
 
-<script src="assets/js/global-ui.js"></script>
-
+<!-- JS -->
+<script src="assets/js/home-hero.js" defer></script>
+<script src="assets/js/global-ui.js" defer></script>
 </body>
 </html>

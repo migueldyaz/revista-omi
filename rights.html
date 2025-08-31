@@ -3,27 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <title>Derechos | Revista OMI Internacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Política de derechos de autor y derechos conexos de la Revista OMI Internacional." />
+  <link rel="canonical" href="/rights.html" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 <header>
-<!-- Botón hamburguesa visible solo en pantallas pequeñas -->
- <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
+  <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
+  <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
 
-
-  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" loading="lazy" decoding="async" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
-<nav class="menu">
+<nav class="menu" aria-label="Menú principal">
   <ul class="menu-root">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="assets/archivo.html">Archivo</a></li>
     <li><a href="directrices.html">Directrices para Autores</a></li>
     <li class="has-submenu">
-      <a href="#">Acerca de</a>
+      <a href="acerca.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">Acerca de</a>
       <ul class="submenu">
         <li><a href="acerca.html">Acerca de</a></li>
         <li><a href="comite.html">Comité Editorial</a></li>
@@ -69,11 +74,11 @@
   <div class="footer-content">
     <p>
       Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
-      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener noreferrer external">e-ISSN: 3061-7251</a>).<br>
       Esta revista publica bajo una licencia
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
-        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer external" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener noreferrer external">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" loading="lazy" decoding="async" />
       </a>
     </p>
 

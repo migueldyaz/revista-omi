@@ -3,27 +3,93 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mapa del Sitio | Revista OMI Internacional</title>
+  <title>Mapa del sitio | Revista OMI Internacional</title>
+  <meta name="description" content="Mapa del sitio de la Revista OMI Internacional: páginas principales, número vigente y artículos con enlaces a sus versiones HTML, EPUB y PDF." />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
+  <script>
+    (function () {
+      var isGH = location.hostname.endsWith('github.io');
+      var repo = isGH ? location.pathname.split('/')[1] : '';
+      var baseHref = isGH ? ('/' + repo + '/') : '/';
+      document.write('<base href="' + baseHref + '">');
+    })();
+  </script>
+  <link rel="canonical" href="sitemap.html" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body class="loaded">
-  <header>
-    <h1>Mapa del Sitio</h1>
+  <header class="site-header">
+    <h1>Mapa del sitio</h1>
+    <p>Revista OMI Internacional</p>
   </header>
-  <main>
-    <ul>
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="acerca.html">Acerca de</a></li>
-      <li><a href="publicaciones.html">Publicaciones</a></li>
-      <li><a href="series.html">Series</a></li>
-      <li><a href="comite.html">Comité Editorial</a></li>
-      <li><a href="directrices.html">Directrices para Autores</a></li>
-      <li><a href="politica.html">Política Editorial</a></li>
-      <li><a href="derechos.html">Derechos de Autor</a></li>
-      <li><a href="aviso.html">Aviso de Privacidad</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="error404.html">Página de Error 404</a></li>
-    </ul>
+
+  <main class="container">
+    <section>
+      <h2>Páginas principales</h2>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="acerca.html">Acerca de</a></li>
+        <li><a href="comite.html">Comité Editorial</a></li>
+        <li><a href="directrices.html">Directrices para Autores</a></li>
+        <li><a href="assets/archivo.html">Archivo</a></li>
+        <li><a href="rights.html">Derechos de Autor y Conexos</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Número vigente</h2>
+      <ul>
+        <li>
+          Vol. 2 Núm. 1 (2025) —
+          <a href="assets/view/202501/numero-2025-01.html">Tabla de contenidos</a>
+          <ul>
+            <li>
+              Art-001 · <em>(título del art. 1)</em> —
+              <a href="assets/view/202501/art-001/artview-001.html">Página del artículo</a> ·
+              <a href="assets/view/202501/art-001/html/art-001.html">HTML</a> ·
+              <a href="assets/view/202501/art-001/epub/art-001.html">EPUB</a> ·
+              <a href="assets/view/202501/art-001/pdf/art-001.pdf">PDF</a>
+            </li>
+            <li>
+              Art-002 · <em>(título del art. 2)</em> —
+              <a href="assets/view/202501/art-002/artview-002.html">Página del artículo</a> ·
+              <a href="assets/view/202501/art-002/html/art-002.html">HTML</a> ·
+              <a href="assets/view/202501/art-002/epub/art-002.html">EPUB</a> ·
+              <a href="assets/view/202501/art-002/pdf/art-002.pdf">PDF</a>
+            </li>
+            <li>
+              Art-003 · <em>(título del art. 3)</em> —
+              <a href="assets/view/202501/art-003/artview-003.html">Página del artículo</a> ·
+              <a href="assets/view/202501/art-003/html/art-003.html">HTML</a> ·
+              <a href="assets/view/202501/art-003/epub/art-003.html">EPUB</a> ·
+              <a href="assets/view/202501/art-003/pdf/art-003.pdf">PDF</a>
+            </li>
+            <li>
+              Art-004 · <em>Diagnóstico del nivel de desarrollo de la educación emocional: realidad social</em> —
+              <a href="assets/view/202501/art-004/artview-004.html">Página del artículo</a> ·
+              <a href="assets/view/202501/art-004/html/art-004.html">HTML</a> ·
+              <a href="assets/view/202501/art-004/epub/art-004.html">EPUB</a> ·
+              <a href="assets/view/202501/art-004/pdf/art-004.pdf">PDF</a>
+            </li>
+            <li>
+              Art-005 · <em>Revolucionando la enseñanza de la Historia en Ciego de Ávila, Cuba</em> —
+              <a href="assets/view/202501/art-005/artview-005.html">Página del artículo</a> ·
+              <a href="assets/view/202501/art-005/html/art-005.html">HTML</a> ·
+              <a href="assets/view/202501/art-005/epub/art-005.html">EPUB</a> ·
+              <a href="assets/view/202501/art-005/pdf/art-005.pdf">PDF</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Páginas de estado</h2>
+      <ul>
+        <li><a href="403.html">403</a> · <a href="404.html">404</a> · <a href="500.html">500</a></li>
+      </ul>
+    </section>
   </main>
 </body>
 </html>

@@ -6,21 +6,18 @@
    3) Layout
    4) Header y navegación
    5) Migas (breadcrumbs)
-   6) Componentes de contenido (artículos, TOC, tablas, autores, refs)
+   6) Componentes (hero, TOC, listas, artículos, créditos, directrices,
+      tablas, autores, referencias, utilidades varias)
    7) Vistas (view-article, archivo/issues, portada de número)
    8) Footer
    9) Utilidades / accesibilidad
    10) Responsivo
-   ---------------------------------------------------------------------
-   Notas:
-   • Se eliminaron duplicados (authors-block, refs, no-bullets, etc.).
-   • Se mantuvo el override de scroll-behavior para el visor EPUB.
 ===================================================================== */
 
 /* ========================================
    1) RESET / BASE
 ======================================== */
-html { scroll-behavior: smooth; } /* se desactiva abajo para visor EPUB */
+html { scroll-behavior: smooth; } /* se desactiva abajo SOLO para visor EPUB */
 *, *::before, *::after { box-sizing: border-box; }
 
 body{
@@ -31,6 +28,21 @@ body{
 }
 body.loaded { opacity: 1; }
 body.fade-out { opacity: 0; transition: opacity .25s ease-in-out; }
+
+/* Variables principales (layout + color) */
+:root{
+  --header-h: 90px;      /* antes 72px */
+  --menu-h: 56px;
+  --breadcrumb-h: 36px;
+  --safe-top: calc(var(--header-h) + var(--menu-h));
+
+  --safe-bottom: 120px;
+  --safe-buffer: 24px;
+
+  --omi-blue: #0B3F78;
+  --omi-blue-2: #125a9c;
+  --text: #1b2c3a;
+}
 
 /* ========================================
    2) TIPOGRAFÍA GLOBAL
@@ -44,7 +56,8 @@ h1 { font-size: 2rem; margin-bottom: 1rem; line-height: 1.2; }
 h2 { font-size: 1.5rem; margin-bottom: 1rem; color: #004B87; }
 h3 { font-size: 1.25rem; margin-top: 1.5rem; color: #003C6C; }
 h4 { font-size: 1.1rem; margin-top: 1.2rem; color: #003C6C; }
-h2, h3, h4 { scroll-margin-top: 100px; } /* anclados visibles bajo header fijo */
+/* ✳ anclados visibles bajo header+menú fijos (dinámico, evita saltos) */
+h1, h2, h3, h4 { scroll-margin-top: calc(var(--safe-top) + 8px); }
 
 p { font-size: 1rem; text-align: justify; margin-bottom: 1rem; }
 ol, ul { padding-left: 1.5rem; margin-bottom: 1.5rem; }
@@ -77,19 +90,23 @@ header{
   background:#004B87; color:#fff; padding:15px 20px;
   display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
   view-transition-name: header;
+  position: sticky; top: 0; z-index: 1000; /* sticky global */
+  min-block-size: var(--header-h);        /* ✳ reserva altura p/ evitar CLS */
 }
-header img{ height:60px; margin-right:15px; }
+header img{
+  height:60px; width:auto; margin-right:15px;
+  display:block; flex-shrink:0;           /* ✳ evita encogimiento en flex */
+}
 header h1{ margin:0; font-size:1.6rem; flex:1; }
 
 nav{ background:#003C6C; padding:10px 20px; }
 nav a{
   color:#fff; text-decoration:none; margin-right:15px; font-weight:bold;
 }
-nav a.active{ background:#005fa3; border-radius:4px; padding:5px 10px; }
 nav a:visited{ color:#fff; }
 nav a:hover{ text-decoration:underline; background:#006bbf; transition:background .2s; }
 
-/* Menú con submenús */
+nav.menu{ position: sticky; top: var(--header-h); z-index: 999; }
 nav.menu ul.menu-root{
   list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap;
   background:#003C6C;
@@ -113,6 +130,7 @@ nav.menu .has-submenu:hover .submenu{ display:block; }
 }
 
 /* Estado activo en raíz del menú */
+.menu-root a.is-active,
 .menu-root a.active{ background:#005b96; color:#fff; cursor:default; }
 
 /* ========================================
@@ -122,6 +140,7 @@ nav.menu .has-submenu:hover .submenu{ display:block; }
   font-size:.9rem; margin:1em 0 1.5em; padding:.5em 1em;
   background:#f9f9f9; border-radius:5px;
   display:flex; flex-wrap:wrap; align-items:center; gap:.4rem;
+  min-block-size: var(--breadcrumb-h); /* ✳ reserva para evitar “brincos” */
 }
 .breadcrumb a{
   color:#0056b3 !important; text-decoration:none; display:inline-flex; align-items:center; gap:4px;
@@ -131,12 +150,88 @@ nav.menu .has-submenu:hover .submenu{ display:block; }
 .breadcrumb svg{ width:14px; height:14px; fill:#0056b3; margin-bottom:1px; }
 
 /* ========================================
-   6) COMPONENTES DE CONTENIDO
+   6) COMPONENTES
 ======================================== */
 
-/* 6.1 Hero de portada (home) */
+/* 6.1 Hero de portada legado (por si se usa en otras vistas) */
 .homepage-hero{ margin-left:50%; transform:translateX(-50%); }
 .homepage-hero img{ display:block; width:100vw; max-width:100%; height:auto; }
+
+/* 6.1-bis Hero con secuencia en scroll (único y avanzado) */
+.scroll-seq{
+  padding-bottom: calc(var(--safe-bottom) + var(--safe-buffer));
+  margin-left:50%;
+  transform:translateX(-50%);
+  width:100vw;
+  overflow:hidden;
+  background:#fff;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+.seq-step{
+  min-height: calc(100vh - var(--safe-top) - var(--safe-bottom));
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:clamp(16px, 5vw, 48px);
+  opacity:0; transform:translateY(24px) translateZ(0);
+  transition:opacity .8s ease, transform .8s ease;
+  will-change: opacity, transform;
+  content-visibility:auto;
+  contain-intrinsic-block-size: 80vh;
+}
+@supports (height: 100dvh){
+  .seq-step{ min-height: calc(100dvh - var(--safe-top) - var(--safe-bottom)); }
+}
+.seq-step.is-active{ opacity:1; transform:translateY(0) translateZ(0); }
+
+.seq-img{
+  width:min(70vw, 780px);
+  height:auto;
+  margin:.6rem 0 1.2rem;
+  display:block;
+}
+.seq-title{
+  margin:.25rem 0 .5rem;
+  font-size:clamp(1.6rem, 1rem + 1.8vw, 2.1rem);
+  font-weight:800; color:var(--omi-blue);
+  letter-spacing:.2px; line-height:1.2;
+  text-wrap:balance;
+}
+.seq-title::after{
+  content:""; display:block; width:clamp(56px, 6vw, 88px); height:4px;
+  margin:.55rem auto 1rem;
+  background:linear-gradient(90deg, var(--omi-blue), var(--omi-blue-2));
+  border-radius:3px; opacity:.9;
+}
+.seq-text{
+  max-width:min(75ch, 92vw);
+  margin:0 auto;
+  font-size:clamp(1.02rem, .94rem + .5vw, 1.18rem);
+  line-height:1.85; color:var(--text);
+  text-align:justify; text-justify:inter-word;
+
+  /* sin guiones; rompe solo palabras muy largas */
+  hyphens:none; -webkit-hyphens:none;
+  word-break:normal; overflow-wrap:break-word;
+  text-wrap:pretty;
+}
+/* Botones del hero */
+.seq-ctas{ margin-top:1rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap; }
+.btn{
+  display:inline-block; padding:.7rem 1.1rem;
+  border-radius:12px; text-decoration:none; font-weight:700;
+  border:1px solid #cfd6dc; box-shadow:0 1px 0 rgba(0,0,0,.06);
+  transition:transform .12s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+.btn:active{ transform:translateY(1px); }
+.btn-primary{ background:#0B3F78; color:#fff; border-color:#0B3F78; }
+.btn-primary:hover{ background:#093664; border-color:#093664; }
+.btn-ghost{ background:#fff; color:#0B3F78; }
+.btn-ghost:hover{ background:#f4f7fb; }
+
+@media (prefers-reduced-motion: reduce){
+  .seq-step{ transition:none; transform:none !important; opacity:1 !important; }
+}
 
 /* 6.2 Índice de contenidos (TOC) */
 details.indice-contenido{
@@ -157,12 +252,10 @@ details.indice-contenido > summary::after{
   content:"▾"; margin-left:auto; transition:transform .2s ease;
 }
 details.indice-contenido:not([open]) > summary::after{ transform:rotate(-90deg); }
-
 .indice-contenido .toc-body{
   padding:0 .75rem .75rem; overflow:hidden; transition:max-height .25s ease; max-height:800px;
 }
 .indice-contenido:not([open]) .toc-body{ max-height:0; }
-
 .indice-contenido .toc-body ul{ list-style:none; padding-left:0; margin:0; }
 .indice-contenido .toc-body ul li{
   margin:.3rem 0; padding-left:.5rem; border-left:3px solid transparent;
@@ -180,10 +273,11 @@ details#toc .toc-body{ display:none; }
 
 /* 6.3 Botón "volver arriba" */
 #btn-top{
-  position:fixed; bottom:2rem; right:2rem; display:none;
+  position:fixed; bottom:max(2rem, env(safe-area-inset-bottom)); right:2rem; display:none; /* ✳ respeta notch */
   padding:.6rem .9rem; border:none; border-radius:6px;
   background:#333; color:#fff; font-size:.95rem; line-height:1;
   cursor:pointer; z-index:1000; box-shadow:0 2px 8px rgba(0,0,0,.25);
+  transition: opacity .2s ease, transform .2s ease; /* ✳ solo propiedades baratas */
 }
 #btn-top.show{ display:inline-flex; align-items:center; justify-content:center; }
 #btn-top:hover{ background:#111; }
@@ -191,7 +285,7 @@ details#toc .toc-body{ display:none; }
 
 /* 6.4 Listas utilitarias */
 .no-bullets{ list-style:none; padding-left:0; margin:0; }
-.no-bullets--indent{ padding-left:1.5em; } /* variante con sangría */
+.no-bullets--indent{ padding-left:1.5em; }
 .compact-list li{ margin:.2em 0; line-height:1.05; }
 
 .bullets-disc{ list-style-type:disc; margin-left:1.5em; padding-left:.5em; }
@@ -236,17 +330,15 @@ details#toc .toc-body{ display:none; }
 #directrices-autores li{ margin-bottom:.5rem; line-height:1.5; }
 #directrices-autores p{ margin-bottom:1rem; text-align:justify; }
 
-/* 6.8 Tablas */
-.tabla-omi{ width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
-.tabla-omi th, .tabla-omi td{ border:1px solid #333; padding:.5rem .6rem; }
-.tabla-omi thead th{ text-align:center; font-weight:700; }
-.tabla-omi tbody td:nth-child(n+2){ text-align:center; }
-
-/* Override solicitado: segunda columna a la izquierda */
-.tabla-omi tbody td:nth-child(2){ text-align:left; }
-
+/* 6.8 Tablas (base unificada + variante mejorada) */
 .table-responsive{ width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .table-responsive table{ min-width:500px; }
+
+.tabla-omi{ width:100%; border-collapse:collapse; margin:1rem 0; font-size:.95rem; }
+.tabla-omi th, .tabla-omi td{ border:1px solid #ccc; padding:.5rem .6rem; vertical-align:top; }
+.tabla-omi thead th{ text-align:center; font-weight:700; background:#fafafa; }
+/* Override solicitado: segunda columna a la izquierda */
+.tabla-omi tbody td:nth-child(2){ text-align:left; }
 
 /* Variante estilizada */
 .tabla-omi.mejorada{
@@ -324,9 +416,7 @@ details#toc .toc-body{ display:none; }
 }
 
 /* Ajustes finos en view-article */
-/* Variante “ancho/extendido” solo cuando se pida */
 .view-article--wide .container{ background:transparent; box-shadow:none; border-radius:0; padding:0; }
-
 .view-article .content, .view-article .sidebar{ padding:20px; }
 .view-article .paper-head .title-es{
   font-size:clamp(1.6rem, 2.2vw + .8rem, 2.2rem) !important; line-height:1.25;
@@ -427,9 +517,9 @@ footer img, .site-footer img{ margin-left:8px; vertical-align:middle; }
 ======================================== */
 /* Visor EPUB:
    - Evita "rebote" (overscroll) y jitters del CFI.
-   - Desactiva scroll suave global SOLO aquí (intencional override). */
+   - Desactiva scroll suave global SOLO aquí. */
 #viewer{ overscroll-behavior: contain; }
-html, body{ scroll-behavior: auto; } /* mantener si el visor vive en la misma página */
+body.epub-view{ scroll-behavior: auto; }
 
 /* Utilidades para anexos / formularios impresos */
 .fill-line{ display:inline-block; min-width:4.5rem; border-bottom:1px solid var(--border,#999); line-height:1.1em; }
@@ -447,6 +537,16 @@ html, body{ scroll-behavior: auto; } /* mantener si el visor vive en la misma p�
 
 .form-line, .check-line{ margin:6px 0; }
 .rule.lg{ border-bottom:1px solid #000; margin:10px 0 20px; height:1.2em; }
+
+/* Auxiliares y normalizaciones locales */
+.brand { display:flex; align-items:center; gap:.75rem; }
+.brand img { height:40px; width:auto; }
+.brand .site-name { font-weight:700; font-size:1.05rem; }
+
+.fig-centered figcaption{ font-style:italic; font-size:.95rem; margin-top:.25rem; text-align:center; }
+
+/* En tablas grandes, evita romper números/palabras críticas */
+.tabla-omi td, .tabla-omi th { word-break: normal; overflow-wrap: anywhere; }
 
 /* ========================================
    10) RESPONSIVO
@@ -471,7 +571,7 @@ html, body{ scroll-behavior: auto; } /* mantener si el visor vive en la misma p�
   /* Menú móvil tipo “drawer” lateral */
   nav.menu ul.menu-root{
     transform:translateX(-100%); opacity:0; transition:transform .3s ease, opacity .3s ease;
-    flex-direction:column; position:absolute; top:60px; left:0; width:70%;
+    flex-direction:column; position:absolute; top: var(--header-h); left:0; width:70%; /* ✳ coherente con header */
     background:#003C6C; z-index:1000; border-radius:0 0 6px 6px; box-shadow:0 4px 6px rgba(0,0,0,.2);
     list-style:none; margin:0; padding:0;
   }
@@ -498,7 +598,7 @@ html, body{ scroll-behavior: auto; } /* mantener si el visor vive en la misma p�
 
 /* Botón arriba en pantallas muy pequeñas */
 @media (max-width:480px){
-  #btn-top{ bottom:1rem; right:1rem; }
+  #btn-top{ bottom:max(1rem, env(safe-area-inset-bottom)); right:1rem; }
 }
 
 /* Preferencia de reduce motion */
@@ -506,52 +606,21 @@ html, body{ scroll-behavior: auto; } /* mantener si el visor vive en la misma p�
   html{ scroll-behavior:auto; }
 }
 
-/* ====== Auxiliares y normalizaciones locales ====== */
-    .brand { display:flex; align-items:center; gap:.75rem; }
-    .brand img { height:40px; width:auto; }
-    .brand .site-name { font-weight:700; font-size:1.05rem; }
+/* === Fix: evitar solape en páginas de artículo (view-article) === */
+.view-article header{
+  position: static !important;
+  top: auto !important;
+  z-index: auto !important;
+}
 
-    /* Tablas OMI unificadas */
-    .table-responsive { overflow-x:auto; -webkit-overflow-scrolling: touch; }
-    .tabla-omi { width:100%; border-collapse:collapse; }
-    .tabla-omi th, .tabla-omi td { border:1px solid #ccc; padding:.5rem .6rem; vertical-align:top; }
-    .tabla-omi thead th { text-align:center; font-weight:700; background:#fafafa; }
+/* Sólo el menú queda sticky, pegado arriba del viewport */
+.view-article nav.menu{
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+}
 
-    /* Cuadros de respuesta/líneas */
-    .answer-line{ border-bottom:1px solid #333; height:1.2em; margin:.4rem 0; }
-    .answer-line.inline{ display:inline-block; width:6rem; vertical-align:middle;}
-    .linea-corta{ display:inline-block; width:2.5rem; border-bottom:1px solid #333; height:.9em; vertical-align:baseline; }
-    .line{ display:inline-block; border-bottom:1px solid #555; height:1.05em; vertical-align:baseline; }
-    .line.short{ width:5rem; } .line.long{ width:20rem; }
-
-    /* Anexos (bloques) */
-    .anexo { margin: 1.5rem 0; }
-    .anexo h1, .anexo h2 { margin:0 0 .6rem 0; }
-    .titulillo, .anx6-subtitle, .anexo-sub { margin:.2rem 0 1rem; }
-
-    /* Grupos en línea (formularios) */
-    .inline-group{ display:block; }
-    .inline-group .gap{ display:inline-block; margin-left:1.25rem; }
-    .inline-group.tight .gap{ margin-left:1.1rem; }
-
-    /* Anexo 6 tamaños */
-    .anx6-idrow { margin:.75rem 0 1rem; }
-    .anx6-questions { padding-left:1.2rem; line-height:1.6; }
-    .anx6-questions > li { margin:.85rem 0 1.1rem; }
-    .anx6-line{ display:inline-block; border-bottom:1px solid #666; vertical-align:middle; margin:-2px 0 2px 4px; }
-    .anx6-xs{ width:2.2rem; } .anx6-sm{ width:3rem; } .anx6-md{ width:6rem; } .anx6-lg{ width:8rem; } .anx6-xl{ width:16rem; }
-
-    /* Listas */
-    .preguntas, .incisos { padding-left:1.2rem; }
-    .subq{ margin:.4rem 0 0; }
-    .fig-centered figcaption{ font-style:italic; font-size:.95rem; margin-top:.25rem; text-align:center; }
-
-    /* Accesibilidad breadcrumb */
-    nav.breadcrumb { font-size:.95rem; }
-    nav.breadcrumb a { text-decoration: none; }
-
-    /* Ajustes menores de tipografía en Resumen/Abstract */
-    .level1 > h1 { margin-top:1.2rem; }
-
-    /* En tablas grandes, evita romper números/palabras críticas */
-    .tabla-omi td, .tabla-omi th { word-break: normal; overflow-wrap: anywhere; }
+/* Mejora anclajes (evita que el sticky tape títulos al navegar por hash) */
+html{
+  scroll-padding-top: calc(var(--menu-h, 56px) + 8px);
+}

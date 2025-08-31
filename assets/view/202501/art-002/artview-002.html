@@ -21,15 +21,19 @@
   <meta name="citation_author" content="Caridad Tabares García">
   <meta name="citation_author" content="Odelkis Hernández">
   <meta name="citation_language" content="es">
-  <meta name="citation_publication_date" content="2025-01-03">
+  <meta name="citation_publication_date" content="2025/01/03">
   <meta name="citation_volume" content="2">
   <meta name="citation_issue" content="1">
-  <meta name="citation_firstpage" content="???">
-  <meta name="citation_lastpage" content="???">
+  <!-- Sin paginación aún; evitamos metas con ??? para no indexar datos falsos -->
   <meta name="citation_pdf_url" content="assets/view/202501/art-002/pdf/art-002.pdf">
   <meta name="citation_abstract_html_url" content="assets/view/202501/art-002/html/art-002.html">
   <meta name="citation_fulltext_html_url" content="assets/view/202501/art-002/html/art-002.html">
 
+  <!-- SEO -->
+  <link rel="canonical" href="assets/view/202501/art-002/artview-002.html" />
+  <meta name="description" content="Diagnóstico del nivel de conservación de la memoria histórica del central “Enrique Varona” en su localidad." />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests">
 
   <!-- Base dinámico -->
   <script>
@@ -48,11 +52,11 @@
 
 <header>
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
-  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" width="240" height="72" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
-<nav class="menu">
+<nav class="menu" aria-label="Menú principal">
   <ul class="menu-root">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="assets/archivo.html">Archivo</a></li>
@@ -67,6 +71,7 @@
     </li>
   </ul>
 </nav>
+
 <!-- Breadcrumbs -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
 <script src="assets/js/breadcrumb-map.js"></script>
@@ -93,13 +98,14 @@
         </section>
 
         <div class="paper-info">
-          <span class="meta"><strong>Páginas:</strong> ???–???</span>
+          <!-- No inventamos paginación -->
+          <span class="meta"><strong>Páginas:</strong> s/p</span>
         </div>
       </header>
 
       <hr class="sep" />
 
-      <!-- Resumen -->
+      <!-- Resumen (se respeta la redacción) -->
       <section aria-labelledby="resumen" class="paper-section">
         <h3 id="resumen">Resumen</h3>
         <p>La presente investigación es un diagnóstico de la conservación de la memoria histórica del central en su localidad. Tiene como problema científico: ¿Cuál es el nivel de conservación de la memoria histórica del central en su localidad? Las diferencias que existen en la investigación son el desconocimiento de la historia local y la poca motivación por parte de los trabajadores por conocer las raíces del mismo, considerando que a partir del grado de conocimientos que posean entonces pueden cuidar y conservar algo tan valioso. Como objeto de la investigación se tiene el proceso de la gestión del patrimonio, y como objetivo: diagnosticar el nivel del conocimiento de la memoria histórica de su localidad. El campo de acción es la conservación de la memoria histórica del central. La hipótesis responde a que el conocimiento de la memoria histórica de la localidad es regular, pues tiene insuficiencias en aspectos tales como el mantenimiento de la infraestructura, su fundación y propietarios, así como sus administraciones y líderes antes y después del triunfo de la revolución. Existen carencias de programas para dar salida desde las clases de Historia de Cuba en noveno grado.</p>
@@ -118,7 +124,7 @@
 
       <hr class="sep" />
 
-      <!-- Referencias con sangría francesa -->
+      <!-- Referencias (se respeta la redacción) -->
       <section class="biblio biblio--compact" aria-labelledby="refs">
         <h3 id="refs">Referencias</h3>
         <ol class="refs refs--hanging refs--wrap">
@@ -152,7 +158,7 @@
     <div class="paper-meta">
       <div class="meta-block">
         <strong class="label">Publicado:</strong>
-        <div class="value">2019-01-03</div>
+        <div class="value">2025-01-03</div>
       </div>
 
       <div class="meta-block">
@@ -174,7 +180,7 @@
 
       <div class="meta-block">
         <strong class="label">Cómo citar:</strong>
-        <p>Caridad Tabares García &amp; Odelkis Hernández. (2019). Diagnóstico de la conservación de la memoria histórica del central “Enrique Varona”. <i>Revista OMI Internacional</i>, 2(1), ???–???.</p>
+        <p>Caridad Tabares García &amp; Odelkis Hernández. (2025). Diagnóstico de la conservación de la memoria histórica del central “Enrique Varona”. <i>Revista OMI Internacional</i>, 2(1), s/p.</p>
       </div>
 
       <div class="meta-block">
@@ -207,34 +213,5 @@
 
 <button id="btn-top" aria-label="Volver arriba">↑ Volver arriba</button>
 <script src="assets/js/global-ui.js"></script>
-
-<!-- Snippet genérico para actualizar páginas en meta + info + cita -->
-<script>
-  document.addEventListener("DOMContentLoaded", function(){
-    // 👇 Cambia SOLO esta línea cuando tengas la versión impresa:
-    const pages = "???–???";  // ejemplo: "149–160"
-
-    // 1) Metadatos <meta> (Google Scholar)
-    const fp = document.querySelector('meta[name="citation_firstpage"]');
-    const lp = document.querySelector('meta[name="citation_lastpage"]');
-    if (pages.includes("–") && fp && lp){
-      const [first, last] = pages.split("–").map(s => s.trim());
-      if (first) fp.setAttribute("content", first);
-      if (last)  lp.setAttribute("content",  last);
-    }
-
-    // 2) Texto bajo el título (“Páginas: …”)
-    const infoMeta = document.querySelector(".paper-info .meta");
-    if (infoMeta){
-      infoMeta.innerHTML = "<strong>Páginas:</strong> " + pages;
-    }
-
-    // 3) Bloque “Cómo citar” (reemplaza ???–???)
-    const citeP = document.querySelector(".paper-meta .meta-block p");
-    if (citeP){
-      citeP.innerHTML = citeP.innerHTML.replace(/???–???/, pages);
-    }
-  });
-</script>
 </body>
 </html>

@@ -2,54 +2,66 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Acceso denegado | Revista OMI Internacional</title>
+  <title>Error 403 — Acceso denegado | Revista OMI Internacional</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="refresh" content="5;url=index.html" />
-
+  <meta name="robots" content="noindex, nofollow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="robots" content="noindex, nofollow">
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    :root{--err-h:#7a0c0c;--err-bg:#fff5f5}
+    main.error{ text-align:center; margin:3rem auto; max-width:60ch; padding:1.25rem 1.5rem; background:var(--err-bg); border-radius:14px; box-shadow:0 2px 12px rgba(0,0,0,.06) }
+    main.error h2{ font-size:clamp(1.8rem,4vw,2.5rem); color:var(--err-h); margin-bottom:.25rem }
+    .error-code{ font-size:.95rem; letter-spacing:.12em; color:var(--err-h); opacity:.85 }
+    .error-actions{ margin-top:1rem; display:flex; gap:.75rem; justify-content:center; flex-wrap:wrap }
+    .error-actions a{ text-decoration:none; border:1px solid var(--err-h); padding:.55rem .9rem; border-radius:999px }
+    #countdown{ display:block; margin-top:.25rem }
+  </style>
 </head>
-<body>
+<body class="status-403">
 <header>
-    <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
- <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
-
-
-  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" loading="lazy" decoding="async" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
-  <nav class="menu">
-    <ul class="menu-root">
-      <li><a href="index.html">Inicio</a></li>
-    </ul>
-  </nav>
+<nav class="menu" aria-label="Menú principal">
+  <ul class="menu-root"><li><a href="index.html">Inicio</a></li></ul>
+</nav>
 
-  <div class="container" style="text-align:center; margin-top:3rem;">
-    <h2 style="font-size: 3em; color: #800000;">Error 403</h2>
-    <p>No tienes permiso para acceder a esta página.</p>
-    <p>Serás redirigido al <a href="index.html">inicio</a> en 5 segundos...</p>
+<main class="container error" role="main">
+  <p class="error-code">ERROR 403</p>
+  <h2>Acceso denegado</h2>
+  <p>No tienes permiso para acceder a esta página.</p>
+  <p id="countdown" aria-live="polite">Redirigiendo al inicio en <strong>5</strong> s…</p>
+  <div class="error-actions">
+    <a href="index.html">Ir al inicio</a>
+    <!-- <a href="contacto.html">Contactar</a> -->
   </div>
+</main>
 
 <footer class="site-footer">
   <div class="footer-content">
-    <p>
-      Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
+    <p>Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
       (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
-      Esta revista publica bajo una licencia
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
-        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      Esta revista publica bajo licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" loading="lazy" decoding="async" />
       </a>
     </p>
-
-    <p>Universidad OMI Centro de Investigación<br>
-      <strong>Dirección:</strong> Av. Anillo Periférico 42, Col. Constitución de 1917, Alcaldía Iztapalapa, C.P. 09260, Ciudad de México. <br>
-      <strong>Teléfonos:</strong> (55) 70897395 y (55) 70897397.<br>
-      <strong>Correo electrónico:</strong> <a href="mailto:contacto@uomi.edu.mx">contacto@uomi.edu.mx</a></p>
+    <p>Universidad OMI Centro de Investigación • Av. Anillo Periférico 42, Iztapalapa, 09260, CDMX • (55) 70897395 / (55) 70897397 •
+      <a href="mailto:contacto@uomi.edu.mx">contacto@uomi.edu.mx</a></p>
   </div>
 </footer>
-<!-- UI general: navegación activa, View Transition, menú hamburguesa -->
-<script src="assets/js/global-ui.js"></script>
+
+<script src="assets/js/global-ui.js" defer></script>
+<script>
+  (function(){var s=5,el=document.querySelector('#countdown strong');
+  var t=setInterval(function(){s--; if(el){el.textContent=s} if(s<=0) clearInterval(t)},1000);}());
+</script>
 </body>
 </html>

@@ -16,12 +16,13 @@
   </script>
 
   <!-- CSS con fallback automático -->
-  <link rel="stylesheet" href="assets/style.css?v=omi-2025-08-28">
+  <link id="main-css" rel="stylesheet" href="assets/style.css?v=omi-2025-08-28">
   <link rel="stylesheet" href="assets/css/article-forms.css?v=omi-2025-08-28">
 
   <script>
     (async () => {
       const el = document.getElementById('main-css');
+      if (!el) return;
       async function ok(url) {
         try { const r = await fetch(url, { method: 'HEAD' }); return r.ok; } catch { return false; }
       }
@@ -43,42 +44,42 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <!-- SEO básicos -->
-<meta name="description" content="Gestión ambiental como reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey." />
-<link rel="canonical" href="assets/view/202501/art-001/html/art-001.html" />
-<meta name="referrer" content="no-referrer-when-downgrade" />
+  <meta name="description" content="Gestión ambiental como reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey." />
+  <link rel="canonical" href="assets/view/202501/art-001/html/art-001.html" />
+  <meta name="referrer" content="no-referrer-when-downgrade" />
 
-<!-- Open Graph / Twitter -->
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey" />
-<meta property="og:description" content="Gestión ambiental como reto en la capacitación de directivos en Jardines del Rey." />
-<meta property="og:url" content="assets/view/202501/art-001/html/art-001.html" />
-<meta property="og:site_name" content="Revista OMI Internacional" />
-<meta property="og:locale" content="es_MX" />
-<meta property="og:image" content="assets/img/og/omi-social-card.jpg" />
-<meta name="twitter:card" content="summary" />
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey" />
+  <meta property="og:description" content="Gestión ambiental como reto en la capacitación de directivos en Jardines del Rey." />
+  <meta property="og:url" content="assets/view/202501/art-001/html/art-001.html" />
+  <meta property="og:site_name" content="Revista OMI Internacional" />
+  <meta property="og:locale" content="es_MX" />
+  <meta property="og:image" content="assets/img/og/omi-social-card.jpg" />
+  <meta name="twitter:card" content="summary" />
 
-<!-- JSON-LD -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"ScholarlyArticle",
-  "name":"Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey",
-  "alternateName":"Environmental management: a challenge in training hotel managers in Jardines del Rey",
-  "inLanguage":"es",
-  "isPartOf":{"@type":"Periodical","name":"Revista OMI Internacional"},
-  "author":[
-    {"@type":"Person","name":"Joaquín Manuel Morales Martínez","email":"moralesjoaquinmm@gmail.com"},
-    {"@type":"Person","name":"Mariela de los Ángeles Martínez Isaac","email":"isaacmariela67@gmail.com"}
-  ],
-  "keywords":["gestión ambiental","capacitación directiva","turismo","Jardines del Rey"],
-  "license":"https://creativecommons.org/licenses/by-nc-sa/4.0/",
-  "url":"assets/view/202501/art-001/html/art-001.html"
-}
-</script>
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ScholarlyArticle",
+    "name":"Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey",
+    "alternateName":"Environmental management: a challenge in training hotel managers in Jardines del Rey",
+    "inLanguage":"es",
+    "isPartOf":{"@type":"Periodical","name":"Revista OMI Internacional"},
+    "author":[
+      {"@type":"Person","name":"Joaquín Manuel Morales Martínez","email":"moralesjoaquinmm@gmail.com"},
+      {"@type":"Person","name":"Mariela de los Ángeles Martínez Isaac","email":"isaacmariela67@gmail.com"}
+    ],
+    "keywords":["gestión ambiental","capacitación directiva","turismo","Jardines del Rey"],
+    "license":"https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "url":"assets/view/202501/art-001/html/art-001.html"
+  }
+  </script>
 
 </head>
 
-<body>
+<body class="view-article">
 
 <header>
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>

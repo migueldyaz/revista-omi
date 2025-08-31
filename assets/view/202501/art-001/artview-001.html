@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey | Revista OMI Internacional</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Metadatos académicos -->
   <meta name="DC.Title" content="Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey">
@@ -12,7 +12,7 @@
   <meta name="DC.Language" scheme="ISO639-1" content="es">
   <meta name="DC.Source" content="Revista OMI Internacional">
   <meta name="DC.Source.ISSN" content="3061-7251">
-  <meta name="DC.Date.issued" scheme="ISO8601" content="2019-01-03">
+  <meta name="DC.Date.issued" scheme="ISO8601" content="2025-01-03">
   <meta name="DC.Rights" content="https://creativecommons.org/licenses/by-nc-sa/4.0/">
 
   <meta name="citation_journal_title" content="Revista OMI Internacional">
@@ -21,13 +21,18 @@
   <meta name="citation_author" content="Joaquín Manuel Morales Martínez">
   <meta name="citation_author" content="Mariela de los Ángeles Martínez Isaac">
   <meta name="citation_language" content="es">
-  <meta name="citation_publication_date" content="2019/01/03">
+  <meta name="citation_publication_date" content="2025/01/03">
   <meta name="citation_volume" content="2">
   <meta name="citation_issue" content="1">
-  <meta name="citation_firstpage" content="???">
-  <meta name="citation_lastpage" content="???">
+  <!-- ⚠️ Paginación no disponible aún; se eliminan metas con ??? para evitar indexar datos incorrectos -->
   <meta name="citation_pdf_url" content="assets/view/202501/art-001/pdf/art-001.pdf">
-  <meta name="citation_abstract_html_url" content="assets/view/202501/art-001/html/artview-001.html">
+  <meta name="citation_abstract_html_url" content="assets/view/202501/art-001/artview-001.html">
+
+  <!-- SEO y seguridad -->
+  <meta name="description" content="Estrategia de capacitación para la gestión ambiental en instalaciones hoteleras de Jardines del Rey (Ciego de Ávila, Cuba)." />
+  <link rel="canonical" href="assets/view/202501/art-001/artview-001.html" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; script-src-attr 'none'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
 
   <!-- Base dinámico -->
   <script>
@@ -41,23 +46,26 @@
 
   <!-- CSS -->
   <link rel="stylesheet" href="assets/style.css" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body class="view-article">
 
 <header>
   <!-- Botón hamburguesa visible solo en pantallas pequeñas -->
   <button class="hamburger" id="hamburger-btn" aria-label="Menú" aria-expanded="false">&#9776;</button>
-  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" />
+  <!-- Logo sin lazy y con dimensiones fijas para evitar CLS -->
+  <img src="assets/img/Logo-UOMI-CDMX-blanco.png" alt="Logo UOMI" decoding="async" width="240" height="72" />
   <h1>Revista OMI Internacional</h1>
 </header>
 
-<nav class="menu">
+<nav class="menu" aria-label="Menú principal">
   <ul class="menu-root">
     <li><a href="index.html">Inicio</a></li>
     <li><a href="assets/archivo.html">Archivo</a></li>
     <li><a href="directrices.html">Directrices para Autores</a></li>
     <li class="has-submenu">
-      <a href="#">Acerca de</a>
+      <a href="acerca.html" class="submenu-toggle" aria-haspopup="true" aria-expanded="false">Acerca de</a>
       <ul class="submenu">
         <li><a href="acerca.html">Acerca de</a></li>
         <li><a href="comite.html">Comité Editorial</a></li>
@@ -68,10 +76,8 @@
 </nav>
 <!-- Breadcrumbs -->
 <nav class="breadcrumb" id="breadcrumb" aria-label="Ruta de navegación"></nav>
-<script src="assets/js/breadcrumb-map.js"></script>
-<script src="assets/js/breadcrumb-render.js?v=2"></script>
-
-
+<script src="assets/js/breadcrumb-map.js" defer></script>
+<script src="assets/js/breadcrumb-render.js?v=2" defer></script>
 
 <main class="container">
   <div class="content">
@@ -94,7 +100,8 @@
         </section>
 
         <div class="paper-info">
-          <span class="meta"><strong>Páginas:</strong> ???–???</span>
+          <!-- Sin inventar paginación: marcador neutro -->
+          <span class="meta"><strong>Páginas:</strong> s/p</span>
         </div>
       </header>
 
@@ -152,7 +159,10 @@
   <aside class="sidebar" aria-label="Información del artículo">
     <figure class="issue-cover">
       <a href="assets/view/202501/numero-2025-01.html">
-        <img src="assets/img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png" alt="Portada Vol. 2 Núm. 1 (2025)">
+        <img src="assets/img/thumbs/70317cfc-4d23-4663-a575-d6bd29b2e200.png"
+             alt="Portada Vol. 2 Núm. 1 (2025)"
+             width="320" height="427"
+             loading="lazy" decoding="async">
       </a>
       <figcaption>Vol. 2 Núm. 1 (2025)</figcaption>
     </figure>
@@ -160,7 +170,7 @@
     <div class="paper-meta">
       <div class="meta-block">
         <strong class="label">Publicado:</strong>
-        <div class="value">2019-01-03</div>
+        <div class="value">2025-01-03</div>
       </div>
 
       <div class="meta-block">
@@ -182,7 +192,7 @@
 
       <div class="meta-block">
         <strong class="label">Cómo citar:</strong>
-        <p>Morales Martínez, J. M., &amp; Martínez Isaac, M. de los Á. (2019). Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey. <i>Revista OMI Internacional</i>, 2(1), ???–???.</p>
+        <p>Morales Martínez, J. M., &amp; Martínez Isaac, M. de los Á. (2025). Gestión ambiental: reto en la capacitación de directivos de instalaciones hoteleras en Jardines del Rey. <i>Revista OMI Internacional</i>, 2(1), s/p.</p>
       </div>
 
       <div class="meta-block">
@@ -198,11 +208,11 @@
   <div class="footer-content">
     <p>
       Copyright © 2025 <strong><em class="revista-nombre">Revista OMI Internacional</em></strong>
-      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener">e-ISSN: 3061-7251</a>).<br>
+      (<a title="e-ISSN" href="https://portal.issn.org/resource/ISSN/3061-7251" target="_blank" rel="noopener noreferrer external">e-ISSN: 3061-7251</a>).<br>
       Esta revista publica bajo una licencia
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
-      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener">
-        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" />
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="license noopener noreferrer external" target="_blank">Creative Commons Atribución-NoComercial-CompartirIgual 4.0</a>.
+      <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" title="Enlace a especificación de CC 4.0" target="_blank" rel="noopener noreferrer external">
+        <img src="assets/img/by-nc-sa.png" alt="CC 4.0" width="104" height="45" loading="lazy" decoding="async" />
       </a>
     </p>
 
@@ -215,35 +225,6 @@
 
 <button id="btn-top" aria-label="Volver arriba">↑ Volver arriba</button>
 <script src="assets/js/global-ui.js"></script>
-
-
-<!-- Snippet genérico para actualizar páginas en meta + info + cita -->
-<script>
-  document.addEventListener("DOMContentLoaded", function(){
-    // 👇 Cambia SOLO esta línea cuando tengas la versión impresa:
-    const pages = "???–???";  // ejemplo: "139–148"
-
-    // 1) Metadatos <meta> (Google Scholar)
-    const fp = document.querySelector('meta[name="citation_firstpage"]');
-    const lp = document.querySelector('meta[name="citation_lastpage"]');
-    if (pages.includes("–") && fp && lp){
-      const [first, last] = pages.split("–").map(s => s.trim());
-      if (first) fp.setAttribute("content", first);
-      if (last)  lp.setAttribute("content",  last);
-    }
-
-    // 2) Texto bajo el título (“Páginas: …”)
-    const infoMeta = document.querySelector(".paper-info .meta");
-    if (infoMeta){
-      infoMeta.innerHTML = "<strong>Páginas:</strong> " + pages;
-    }
-
-    // 3) Bloque “Cómo citar” (reemplaza ???–???)
-    const citeP = document.querySelector(".paper-meta .meta-block p");
-    if (citeP){
-      citeP.innerHTML = citeP.innerHTML.replace(/???–???/, pages);
-    }
-  });
-</script>
+<script src="assets/js/safe-metrics.js" defer></script>
 </body>
 </html>

@@ -7,33 +7,35 @@
 
   <!-- Base dinámico -->
   <script>
-    (function () {
-      var isGH = location.hostname.endsWith('github.io');
-      var repo = isGH ? location.pathname.split('/')[1] : '';
-      var baseHref = isGH ? ('/' + repo + '/') : '/';
-      document.write('<base href="' + baseHref + '">');
-    })();
-  </script>
+  (function () {
+    var isGH = location.hostname.endsWith('github.io');
+    var repo = isGH ? location.pathname.split('/')[1] : '';
+    var baseHref = isGH ? ('/' + repo + '/') : '/';
+    document.write('<base href="' + baseHref + '">');
+  })();
+</script>
+
 
   <!-- CSS con fallback automático -->
-  <link rel="stylesheet" href="assets/style.css?v=omi-2025-08-28">
-  <link rel="stylesheet" href="assets/css/article-forms.css?v=omi-2025-08-28">
+ <link id="main-css" rel="stylesheet" href="assets/style.css?v=omi-2025-08-28">
+<link rel="stylesheet" href="assets/css/article-forms.css?v=omi-2025-08-28">
+<script>
+  (async () => {
+    const el = document.getElementById('main-css');
+    if (!el) return;
+    async function ok(url) {
+      try { const r = await fetch(url, { method: 'HEAD' }); return r.ok; } catch { return false; }
+    }
+    const base = document.baseURI;
+    const hrefs = [el.getAttribute('href'), 'assets/style.css', 'assets/css/style.css'];
+    for (const h of hrefs) {
+      const url = new URL(h, base).href;
+      if (await ok(url)) { el.setAttribute('href', h); return; }
+    }
+    console.warn('No se encontró style.css en ninguna de las rutas probadas.');
+  })();
+</script>
 
-  <script>
-    (async () => {
-      const el = document.getElementById('main-css');
-      async function ok(url) {
-        try { const r = await fetch(url, { method: 'HEAD' }); return r.ok; } catch { return false; }
-      }
-      const base = document.baseURI;
-      const hrefs = [el.getAttribute('href'), 'assets/style.css', 'assets/css/style.css'];
-      for (const h of hrefs) {
-        const url = new URL(h, base).href;
-        if (await ok(url)) { el.setAttribute('href', h); return; }
-      }
-      console.warn('No se encontró style.css en ninguna de las rutas probadas.');
-    })();
-  </script>
 
   <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -44,7 +46,6 @@
 
   <meta name="description" content="Diagnóstico de la conservación de la memoria histórica del central Enrique Varona en Falla, Ciego de Ávila." />
 <link rel="canonical" href="assets/view/202501/art-002/html/art-002.html" />
-<meta name="referrer" content="no-referrer-when-downgrade" />
 
 <meta property="og:type" content="article" />
 <meta property="og:title" content="DIAGNÓSTICO DE LA CONSERVACIÓN DE LA MEMORIA HISTÓRICA DEL CENTRAL ENRIQUE VARONA" />
@@ -54,6 +55,8 @@
 <meta property="og:locale" content="es_MX" />
 <meta property="og:image" content="assets/img/og/omi-social-card.jpg" />
 <meta name="twitter:card" content="summary" />
+<meta name="twitter:image" content="https://tu-dominio/assets/img/og/omi-social-card.jpg">
+
 
 <script type="application/ld+json">
 {
@@ -92,7 +95,7 @@
       <ul class="submenu">
         <li><a href="acerca.html">Acerca de</a></li>
         <li><a href="comite.html">Comité Editorial</a></li>
-        <li><a href="rights.html">Derechos de Autor y Conexos</a></li>
+        <li><a href="rights.html">Derechos de Autor y Derechos Conexos</a></li>
       </ul>
     </li>
   </ul>
@@ -274,7 +277,7 @@
     <p>El desarrollo industrial alcanzado por los pueblos constituye una impresionante fuente de bienes culturales clasificado   en el patrimonio industrial y no siempre valorados en su justa medida, Gran Bretaña, es la pionera en iniciar una acción concreta a favor del patrimonio industrial con la creación en 1959 del National Survey of industrial Monuments, encargada de preservar los monumentos industriales. Gestora de la Revolución Industrial, cuenta con una rica tradición y sentido de pertenencia hacia estos exponentes y desarrolla interesantes proyectos de gran aceptación internacional como el lronbridge George Museum, ubicado en el Valle del rio Sevem, zona que distingue por la producción de hierro.</p>
 </section>
 <!-- ===== Breve caracterización sociodemográfica del central  ===== -->
-  <section id="breve-caracterización-sociodemográfica-del-central " class="level1">
+  <section id="breve-caracterización-sociodemográfica-del-central" class="level1">
     <h1>Breve caracterización sociodemográfica del central </h1>
     <p>El actual municipio de Chambas surgido en 1976 con la nueva división política administrativa ocupa un área de 770.08 km incluidos de cayos adyacentes que hacen ocupar el segundo lugar en la provincia de Ciego de Ávila entre los 78-42y 79-04 de latitud oeste y los 22-24 de latitud norte limitada al norte con el Canal viejo de las Bahamas. Al Sur con el municipio Florencia. Al oeste con el municipio Morón. Al suroeste con el municipio Ciro Redondo y al este con Mayajigua, municipio de Yaguajay provincia Sancti Spíritus. Siendo la línea de demarcación entre los dos municipios el río Jatibonico del Norte.</p>
     <p>La actual empresa azucarera.  Fue fundada en 1917 por el ciudadano español Laureano Falla con el nombre de la empresa Azucarera SA. Dicha empresa fue nacionalizada por el gobierno Revolucionario en agosto de 1960. En el año 2000 se inscribe con la marca comercial “Nauyú” para la venta de sus productos. Esta empresa se ubica de la provincia Ciego de Ávila. Municipio Chambas. Limita al norte con la Empresa Agropecuaria Máximo Gómez. Al sur con la Empresa Pecuaria Florencia y Agroindustrial Integral Chambas. Al este con la Empresa Azucarera Ciro Redondo y al oeste con la Empresa Agropecuaria Máximo Gómez.</p>
@@ -290,7 +293,7 @@
     <p>Por otra parte, Astorga, A y Van, B. (1991) manifiestan que todo diagnostico tiene un como punto de partida un problema; que está basado en el principio de comprender para resolver; exige dos tipos de actividades básicas: la recogida de la información y la posterior reflexión sobre ella. Es un proceso que va de los fenómenos a la esencia y que se apoya en la teoría. Estos elementos expuestos anteriormente propician ganar en claridad sobre la naturaleza del diagnóstico como herramienta o momento de la investigación científica, así como algunas particularidades que se deben tener en cuenta durante su desarrollo en cualquier contexto o espacio comunitario.</p>
     </section>
       <!-- ===== Discusión y resultados  ===== -->
-  <section id="discusión-y-resultados " class="level1">
+  <section id="discusión-y-resultados" class="level1">
     <h1>Discusión y resultados</h1>
     <h2 class="black-title">Análisis de los datos y resultados del diagnóstico</h2>
     <p>A continuación, se presentan los resultados de cada uno de los instrumentos (estudio de documentos, entrevistas y observación) como parte del diagnóstico de la presente investigación.</p>
