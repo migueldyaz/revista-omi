@@ -624,3 +624,15 @@ body.epub-view{ scroll-behavior: auto; }
 html{
   scroll-padding-top: calc(var(--menu-h, 56px) + 8px);
 }
+
+/* Link de formato deshabilitado */
+.format-link.is-disabled{
+  opacity:.5;
+  cursor:not-allowed;
+  text-decoration:none;
+  filter:grayscale(100%);
+  pointer-events:none; /* evita clicks del mouse */
+}
+.format-link.is-disabled:focus{ outline:none; }
+.format-link.is-disabled:hover{ text-decoration:none; }
+
